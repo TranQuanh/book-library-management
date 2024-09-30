@@ -1,0 +1,4 @@
+# Book management
+
+## Entity
+- Book
