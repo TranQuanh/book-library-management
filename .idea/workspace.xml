@@ -5,8 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d0888bf9-8337-42b2-8e97-f97708f3fe17" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/readme.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,7 +39,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "quanganh/update__readme",
+    "git-widget-placeholder": "quanganh/add-readme",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "D:/java/dungthu/book-library-management",
     "node.js.detected.package.eslint": "true",
@@ -69,7 +68,7 @@
       <option name="presentableId" value="Default" />
       <updated>1727689867026</updated>
       <workItem from="1727689868100" duration="469000" />
-      <workItem from="1727693459254" duration="692000" />
+      <workItem from="1727693459254" duration="1015000" />
     </task>
     <servers />
   </component>
