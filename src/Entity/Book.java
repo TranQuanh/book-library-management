@@ -13,4 +13,75 @@ public class Book {
     private LocalDateTime updateDate;
     private List <Type> type;
     private int amount; 
+
+    public int getBookId(){
+        return bookID;
+    }
+
+    public void setBookId(int bookID){
+        this.bookID = bookID;
+    }
+
+    public String getTitle(){
+        return title;
+    }
+
+    public void setTitle(String title){
+        this.title = title;
+    }
+
+    public String getOverview(){
+        return overview;
+    }
+
+    public void setOverview(String overview){
+        this.overview = overview;
+    }
+
+    public String getAuthor(){
+        return author;
+    }
+
+    public void setAuthor(String author){
+        this.author = author;
+    }
+
+    public String getNXB(){
+        return NXB;
+    }
+
+    public void setNXB(String NXB){
+        this.NXB = NXB;
+    }
+
+    public LocalDateTime getCreateDate(){
+        return createDate;
+    }
+
+    public void setCreateDate(LocalDateTime createDate){
+        this.createDate = createDate;
+    }
+
+    public LocalDateTime getUpdateDate(){
+        return updateDate;
+    }
+
+    public void setUpdateDate(LocalDateTime updateDate){
+        this.updateDate = updateDate;
+    }    
+    
+    public int getAmount() {
+        return amount;
+    }
+
+    public void setAmount(int amount){
+        this.amount = amount;
+    }
+
+    public List<Type> getTypes() {
+        return type;
+    }
+    public void setTypes(List<Type> type) {
+        this.type = type;
+    }
 }
