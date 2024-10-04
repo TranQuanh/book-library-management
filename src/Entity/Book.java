@@ -14,6 +14,19 @@ public class Book {
     private List <Type> type;
     private int amount; 
 
+    public Book(int bookID, String title, String overview, String author, String nXB, LocalDateTime createDate,
+            LocalDateTime updateDate, List<Type> type, int amount) {
+        this.bookID = bookID;
+        this.title = title;
+        this.overview = overview;
+        this.author = author;
+        this.NXB = nXB;
+        this.createDate = createDate;
+        this.updateDate = updateDate;
+        this.type = type;
+        this.amount = amount;
+    }
+
     public int getBookId(){
         return bookID;
     }
