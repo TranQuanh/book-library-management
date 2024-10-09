@@ -11,11 +11,10 @@ public class Book {
     private String NXB;
     private LocalDateTime createDate;
     private LocalDateTime updateDate;
-    private List <Type> type;
     private int amount; 
 
     public Book(int bookID, String title, String overview, String author, String nXB, LocalDateTime createDate,
-            LocalDateTime updateDate, List<Type> type, int amount) {
+            LocalDateTime updateDate, int amount) {
         this.bookID = bookID;
         this.title = title;
         this.overview = overview;
@@ -23,7 +22,6 @@ public class Book {
         this.NXB = nXB;
         this.createDate = createDate;
         this.updateDate = updateDate;
-        this.type = type;
         this.amount = amount;
     }
 
@@ -91,10 +89,4 @@ public class Book {
         this.amount = amount;
     }
 
-    public List<Type> getTypes() {
-        return type;
-    }
-    public void setTypes(List<Type> type) {
-        this.type = type;
-    }
 }
