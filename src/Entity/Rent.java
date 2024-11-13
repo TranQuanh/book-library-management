@@ -3,7 +3,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;
 
 public class Rent {
-    private int ID;
+    private String ID;
     private User user;
     private Book book;
     private LocalDateTime borrowTime;
@@ -16,11 +16,11 @@ public class Rent {
         borrowTime = LocalDateTime.now();
     }
 
-    public int getID() {
+    public String getID() {
         return ID;
     }
 
-    public void setID(int ID) {
+    public void setID(String ID) {
         this.ID = ID;
     }
 
@@ -40,20 +40,20 @@ public class Rent {
         this.book = book;
     }
 
-    public LocalDateTime getBorrowTime() {
-        return borrowTime;
+    public String getBorrowTime() {
+        return formatter.format(borrowTime);
     }
 
-    public void setBorrowTime(LocalDateTime borrowTime) {
-        this.borrowTime = borrowTime;
+    public void setBorrowTime(String borrowTime) {
+        this.borrowTime = LocalDateTime.parse(borrowTime, formatter);
     }
 
-    public LocalDateTime getEndTime() {
-        return endTime;
+    public String getEndTime() {
+        return formatter.format(endTime);
     }
 
-    public void setEndTime(LocalDateTime endTime) {
-        this.endTime = endTime;
+    public void setEndTime(String endTime) {
+        this.endTime = LocalDateTime.parse(endTime, formatter);
     }
 
     public int getTotalDays() {
