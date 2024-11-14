@@ -1,7 +1,7 @@
 package Model;
 
 public abstract class User {
-    private String ID;
+    private int ID;
     private String name;
     private String email;
     private String userName;
@@ -58,11 +58,11 @@ public abstract class User {
         this.name = name;
     }
 
-    public String getID() {
+    public int getID() {
         return ID;
     }
 
-    public void setID(String ID) {
+    public void setID(int ID) {
         this.ID = ID;
     }
     public abstract void showList();

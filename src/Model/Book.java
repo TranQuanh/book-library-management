@@ -1,18 +1,18 @@
 package Model;
 
 public class Book {
-    private String ID;
+    private int ID;
     private String name;
     private String author;
     private String publisher;
     private int count;
     public Book(){}
 
-    public String getID() {
+    public int getID() {
         return ID;
     }
 
-    public void setID(String ID) {
+    public void setID(int ID) {
         this.ID = ID;
     }
 
