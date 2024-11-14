@@ -1,5 +1,7 @@
 package Model;
 
+import java.util.Scanner;
+
 public abstract class User {
     private int ID;
     private String name;
@@ -9,6 +11,10 @@ public abstract class User {
     private String phoneNumber;
     private String location;
 
+    //type: 0 ==> Client
+    //      1 ==> Admin
+    //      2 ==> DeletedClientAccount
+    //      3 ==> DeletedAdminAccount
     public User() {}
     public String getLocation() {
         return location;
@@ -65,5 +71,5 @@ public abstract class User {
     public void setID(int ID) {
         this.ID = ID;
     }
-    public abstract void showList();
+    public abstract void showList(Database database, Scanner s);
 }
