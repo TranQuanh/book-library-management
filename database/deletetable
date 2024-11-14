@@ -1,0 +1,2 @@
+USE bookmanagement;
+DROP TABLE User;
