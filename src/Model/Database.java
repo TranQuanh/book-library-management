@@ -9,10 +9,17 @@ public class Database {
     Statement statement;
 
     public Database() {
-        try{
+        try {
+            // Thêm dòng này để load driver
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
             Connection connection = DriverManager.getConnection(url, user, password);
             statement = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
         } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            // Thêm catch cho ClassNotFoundException
+            System.out.println("MySQL JDBC Driver not found.");
             e.printStackTrace();
         }
     }

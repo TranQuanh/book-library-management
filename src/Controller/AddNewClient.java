@@ -20,8 +20,6 @@ public class AddNewClient implements Operation {
         String email = s.next();
         System.out.println("Enter Phone Number: ");
         String phone = s.next();
-        System.out.println("Enter Username: ");
-        String username = s.next();
         System.out.println("Enter Password: ");
         String password = s.next();
         System.out.println("Confirm Password: ");
@@ -36,13 +34,13 @@ public class AddNewClient implements Operation {
 
         int accType = 0;
         try{
-            ResultSet rs = database.getStatement().executeQuery("SELECT COUNT(*)");
+            ResultSet rs = database.getStatement().executeQuery("SELECT COUNT(*) as count FROM user");
             rs.next();
-            int ID = rs.getInt("COUNT(*)") - 1;
-            String insert = "INSERT INTO `users`(`Fistname`,`Lastname`, " +
+            int ID = rs.getInt("count") + 1;
+            String insert = "INSERT INTO `user`(`ID`,`FirstName`,`LastName`, " +
                     " `Email`,`PhoneNumber`,`Password`,`Type`) VALUES " +
-                    " ('"+firstname+"', '"+lastname+"', '"+email+"'," +
-                    "'"+phone+"','"+username+"','"+password+"','"+accType+"');";
+                    " ('"+ID+"', '"+firstname+"', '"+lastname+"', '"+email+"'," +
+                    "'"+phone+"','"+password+"','"+accType+"');";
             database.getStatement().execute(insert);
             System.out.println("Client account created succesfully!\n");
         } catch (SQLException e){
