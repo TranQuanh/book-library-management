@@ -6,7 +6,6 @@ import Controller.AddNewClient;
 import java.util.Scanner;
 
 public class Client extends User{
-    private Operation[] operations = new Operation[]{new AddNewClient()};
     public Client() {
         super();
     }
@@ -18,6 +17,5 @@ public class Client extends User{
         System.out.println("5. Edit My Data");
         System.out.println("6. Quit\n");
         int i = s.nextInt();
-        operations[i].operation(database,s,this);
     }
 }
