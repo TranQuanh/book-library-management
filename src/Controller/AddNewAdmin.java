@@ -41,8 +41,8 @@ public class AddNewAdmin implements Operation {
             ResultSet rs = database.getStatement().executeQuery("SELECT COUNT(*)");
             rs.next();
             int ID = rs.getInt("COUNT(*)") - 1;
-            String insert = "INSERT INTO `users`(`ID`,`Name`, " + " `Email`,`PhoneNumber`,`Password`,`Type`) VALUES " + " " +
-                    "('"+id+"', '"+name+"', '"+email+"','"+phone+"','"+address+"','"+username+"','"+password+"','"+accType+"');";
+            String insert = "INSERT INTO `users`(`ID`,`Name`, " + " `Email`,`PhoneNumber`,`Password`,`Type`) VALUES " +
+                    " ('"+id+"', '"+name+"', '"+email+"','"+phone+"','"+address+"','"+username+"','"+password+"','"+accType+"');";
             database.getStatement().execute(insert);
             System.out.println("Admin account created succesfully!\n");
         } catch (SQLException e){
