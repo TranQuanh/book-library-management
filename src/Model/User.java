@@ -1,4 +1,4 @@
-package Entity;
+package Model;
 
 public abstract class User {
     private String ID;

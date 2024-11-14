@@ -1,4 +1,4 @@
-package Entity;
+package Model;
 
 public class Book {
     private String ID;

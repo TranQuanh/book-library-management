@@ -1,4 +1,4 @@
-package Entity;
+package Model;
 
 import java.sql.*;
 
