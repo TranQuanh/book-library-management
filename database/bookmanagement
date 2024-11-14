@@ -1,0 +1,12 @@
+create database bookmanagement;
+use bookmanagement;
+CREATE TABLE User (
+    ID INT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    userName VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    phoneNumber VARCHAR(15),
+    location VARCHAR(255),
+    Type INT
+);
