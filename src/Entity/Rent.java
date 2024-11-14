@@ -3,7 +3,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;
 
 public class Rent {
-    private String ID;
+    private int ID;
     private User user;
     private Book book;
     private LocalDateTime borrowTime;
@@ -16,11 +16,11 @@ public class Rent {
         borrowTime = LocalDateTime.now();
     }
 
-    public String getID() {
+    public int getID() {
         return ID;
     }
 
-    public void setID(String ID) {
+    public void setID(int ID) {
         this.ID = ID;
     }
 
