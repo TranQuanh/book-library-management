@@ -21,7 +21,7 @@ public class Login {
 
         ArrayList<User> users = new ArrayList<>();
         try {
-            String select = "SELECT * FROM 'users';";  // Fixed SQL syntax
+            String select = "SELECT * FROM 'user';";  // Fixed SQL syntax
             ResultSet rs = database.getStatement().executeQuery(select);
             while (rs.next()) {
                 User user;

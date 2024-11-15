@@ -1,11 +1,11 @@
 package Model;
 
-import Controller.AddNewAdmin;
+import Controller.AddNewAccount;
 
 import java.util.Scanner;
 
 public class Admin extends User {
-    private Operation[] operations = new Operation[]{new AddNewAdmin()};
+    private Operation[] operations = new Operation[]{new AddNewAccount(1)};
     public Admin() {
         super();
     }
@@ -20,7 +20,7 @@ public class Admin extends User {
         System.out.println("7. Quit\n");
 
         int i = s.nextInt();
-        operations[i].operation(database,s,this);
+        operations[0].operation(database,s,this);
 
     }
 }
