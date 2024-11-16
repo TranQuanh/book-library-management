@@ -1,8 +1,5 @@
 package Model;
 
-import Controller.AddNewAdmin;
-import Controller.AddNewClient;
-
 import java.util.Scanner;
 
 public class Client extends User{
