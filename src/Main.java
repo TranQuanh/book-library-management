@@ -13,7 +13,7 @@ public class Main {
     public static void main(String[] args) {
        Scanner sc =new Scanner(System.in);
        Database db = new Database();
-        Client ad = new Client();
-        ad.showList(db,sc);
+       Client ad = new Client();
+       ad.showList(db,sc);
     }
 }
