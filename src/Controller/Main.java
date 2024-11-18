@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Login {
+public class Main {
     public static void main(String[] args) {
         Database database = new Database();
         Scanner sc = new Scanner(System.in);
@@ -21,7 +21,7 @@ public class Login {
 
         ArrayList<User> users = new ArrayList<>();
         try {
-            String select = "SELECT * FROM 'user';";  // Fixed SQL syntax
+            String select = "SELECT * FROM `user`;";   // Fixed SQL syntax
             ResultSet rs = database.getStatement().executeQuery(select);
             while (rs.next()) {
                 User user;
