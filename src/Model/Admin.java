@@ -21,6 +21,6 @@ public class Admin extends User {
 
         int i = sc.nextInt();
         operations[0].operation(database,sc,this);
-
+        showList(database,sc);
     }
 }

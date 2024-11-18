@@ -16,6 +16,10 @@ public class Main {
         System.out.println("Welcome to Book Library Management");
         System.out.println("Enter your email:\n(-1) to create new account");
         String email = sc.next();
+        if (email.equals("-1")){
+            new AddNewAccount(0).operation(database,sc,null);
+            return;
+        }
         System.out.println("Enter password:");
         String password = sc.next();
 
@@ -55,11 +59,16 @@ public class Main {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        boolean loggedIn =false;
         for(User u : users) {
             if(u.getEmail().equals(email) && u.getPassword().equals(password)) {
                 System.out.println("Welcome "+u.getFirstName()+"!");
+                loggedIn = true;
                 u.showList(database,sc);
             }
+        }
+        if(!loggedIn) {
+            System.out.println("Email or password doesn't match");
         }
     }
 }
