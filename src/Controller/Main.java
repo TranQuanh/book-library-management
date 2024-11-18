@@ -1,0 +1,65 @@
+package Controller;
+import Model.Database;
+import Model.User;
+import Model.Client;
+import Model.Admin;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Database database = new Database();
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Welcome to Book Library Management");
+        System.out.println("Enter your email:\n(-1) to create new account");
+        String email = sc.next();
+        System.out.println("Enter password:");
+        String password = sc.next();
+
+        ArrayList<User> users = new ArrayList<>();
+        try {
+            String select = "SELECT * FROM `user`;";   // Fixed SQL syntax
+            ResultSet rs = database.getStatement().executeQuery(select);
+            while (rs.next()) {
+                User user;
+                int ID = rs.getInt("ID");
+                String firstName = rs.getString("FirstName");
+                String lastName = rs.getString("LastName");
+                String em = rs.getString("Email");  // Fixed to double quotes
+                String phoneNumber = rs.getString("PhoneNumber");
+                String pass = rs.getString("Password");  // Fixed typo
+
+                int type = rs.getInt("Type");
+                switch (type) {
+                    case 0:
+                        user = new Client();
+                        break;
+                    case 1:
+                        user = new Admin();
+                        break;
+                    default:
+                        user = new Client();
+                        break;
+                }
+                user.setID(ID);
+                user.setFirstName(firstName);
+                user.setLastName(lastName);
+                user.setEmail(em);
+                user.setPhoneNumber(phoneNumber);
+                user.setPassword(pass);
+                users.add(user);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        for(User u : users) {
+            if(u.getEmail().equals(email) && u.getPassword().equals(password)) {
+                System.out.println("Welcome "+u.getFirstName()+"!");
+                u.showList(database,sc);
+            }
+        }
+    }
+}

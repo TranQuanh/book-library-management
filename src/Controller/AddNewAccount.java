@@ -9,30 +9,34 @@ import Model.Database;
 import Model.User;
 import Model.Operation;
 
-public class AddNewAdmin implements Operation {
+public class AddNewAccount implements Operation {
+    private int accType;
+    public AddNewAccount(int accType) {
+        this.accType = accType;
+    }
+
     @Override
-    public void operation(Database database, Scanner s, User user){
+    public void operation(Database database, Scanner sc, User user){
         System.out.println("Enter Firstname: ");
-        String firstname = s.next();
+        String firstname = sc.next();
         System.out.println("Enter Lastname: ");
-        String lastname = s.next();
+        String lastname = sc.next();
         System.out.println("Enter Email: ");
-        String email = s.next();
+        String email = sc.next();
         System.out.println("Enter Phone Number: ");
-        String phone = s.next();
+        String phone = sc.next();
         System.out.println("Enter Password: ");
-        String password = s.next();
+        String password = sc.next();
         System.out.println("Confirm Password: ");
-        String confirmPassword = s.next();
+        String confirmPassword = sc.next();
         while(!confirmPassword.equals(password)){
             System.out.println("Password does not match!");
             System.out.println("Enter Password: ");
-            password = s.nextLine();
+            password = sc.nextLine();
             System.out.println("Confirm Password: ");
-            confirmPassword = s.nextLine();
+            confirmPassword = sc.nextLine();
         }
 
-        int accType = 1;
         try{
             ResultSet rs = database.getStatement().executeQuery("SELECT COUNT(*) as count FROM user");
             rs.next();
@@ -42,7 +46,7 @@ public class AddNewAdmin implements Operation {
                     " ('"+ID+"', '"+firstname+"', '"+lastname+"', '"+email+"'," +
                     "'"+phone+"','"+password+"','"+accType+"');";
             database.getStatement().execute(insert);
-            System.out.println("Admin account created succesfully!\n");
+            System.out.println("Account created succesfully!\n");
         } catch (SQLException e){
             e.printStackTrace();
         }

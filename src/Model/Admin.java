@@ -1,16 +1,16 @@
 package Model;
 
-import Controller.AddNewAdmin;
+import Controller.AddNewAccount;
 
 import java.util.Scanner;
 
 public class Admin extends User {
-    private Operation[] operations = new Operation[]{new AddNewAdmin()};
+    private Operation[] operations = new Operation[]{new AddNewAccount(1)};
     public Admin() {
         super();
     }
     @Override
-    public void showList(Database database, Scanner s) {
+    public void showList(Database database, Scanner sc) {
         System.out.println("\n1. Add New Book");
         System.out.println("2. View Books");
         System.out.println("3. Update Book");
@@ -19,8 +19,8 @@ public class Admin extends User {
         System.out.println("6. View Admin");
         System.out.println("7. Quit\n");
 
-        int i = s.nextInt();
-        operations[i].operation(database,s,this);
+        int i = sc.nextInt();
+        operations[0].operation(database,sc,this);
 
     }
 }
