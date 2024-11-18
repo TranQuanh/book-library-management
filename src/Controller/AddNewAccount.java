@@ -5,9 +5,7 @@ import java.sql.SQLException;
 import java.sql.SQLOutput;
 import java.util.Scanner;
 
-import Model.Database;
-import Model.User;
-import Model.Operation;
+import Model.*;
 
 public class AddNewAccount implements Operation {
     private int accType;
@@ -47,6 +45,19 @@ public class AddNewAccount implements Operation {
                     "'"+phone+"','"+password+"','"+accType+"');";
             database.getStatement().execute(insert);
             System.out.println("Account created succesfully!\n");
+
+            if (accType ==0){
+                user = new Client();
+                user.setID(ID);
+                user.setFirstName(firstname);
+                user.setLastName(lastname);
+                user.setEmail(email);
+                user.setPhoneNumber(phone);
+                user.setPassword(password);
+                user.showList(database,sc);
+            }
+
+
         } catch (SQLException e){
             e.printStackTrace();
         }
