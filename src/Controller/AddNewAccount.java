@@ -1,8 +1,10 @@
 package Controller;
 
+import java.sql.Array;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.SQLOutput;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import Model.*;
@@ -36,6 +38,18 @@ public class AddNewAccount implements Operation {
         }
 
         try{
+            //Check valid email
+            ArrayList<String> emails = new ArrayList<>();
+            ResultSet rs0 = database.getStatement().executeQuery("SELECT `Email` FROM `user`;");
+            while(rs0.next()){
+                emails.add(rs0.getString("Email"));
+            }
+
+            if (emails.contains(email)){
+                System.out.println("Email Already Exists");
+                return;
+            }
+
             ResultSet rs = database.getStatement().executeQuery("SELECT COUNT(*) as count FROM user");
             rs.next();
             int ID = rs.getInt("count") + 1;
