@@ -37,24 +37,27 @@ public class Main {
                 String pass = rs.getString("Password");  // Fixed typo
 
                 int type = rs.getInt("Type");
-                switch (type) {
-                    case 0:
-                        user = new Client();
-                        break;
-                    case 1:
-                        user = new Admin();
-                        break;
-                    default:
-                        user = new Client();
-                        break;
+                if (type == 0){
+                    user = new Client();
+                    user.setID(ID);
+                    user.setFirstName(firstName);
+                    user.setLastName(lastName);
+                    user.setEmail(em);
+                    user.setPhoneNumber(phoneNumber);
+                    user.setPassword(pass);
+                    users.add(user);
+                } else if (type == 1) {
+                    user = new Admin();
+                    user.setID(ID);
+                    user.setFirstName(firstName);
+                    user.setLastName(lastName);
+                    user.setEmail(em);
+                    user.setPhoneNumber(phoneNumber);
+                    user.setPassword(pass);
+                    users.add(user);
+                } else{
+                    System.out.println("Account does not exist!");
                 }
-                user.setID(ID);
-                user.setFirstName(firstName);
-                user.setLastName(lastName);
-                user.setEmail(em);
-                user.setPhoneNumber(phoneNumber);
-                user.setPassword(pass);
-                users.add(user);
             }
         } catch (SQLException e) {
             e.printStackTrace();
