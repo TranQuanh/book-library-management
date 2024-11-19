@@ -9,3 +9,10 @@ CREATE TABLE User (
     Password VARCHAR(15),
     Type INT
 );
+create table book(
+    ID int primary key,
+    Name varchar(225) not null,
+    Author varchar(225) not null,
+    Publisher varchar(225) not null,
+    Count int
+);
