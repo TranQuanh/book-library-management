@@ -21,7 +21,7 @@ public class Admin extends User {
         System.out.println("7. Quit\n");
 
         int i = sc.nextInt();
-        operations[0].operation(database,sc,this);
+        operations[i].operation(database,sc,this);
         showList(database,sc);
     }
 }

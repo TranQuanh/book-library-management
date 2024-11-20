@@ -1,2 +1,3 @@
 USE bookmanagement;
-DROP TABLE User;
+DROP TABLE user;
+DROP TABLE book;

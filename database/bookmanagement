@@ -1,18 +1,18 @@
 create database bookmanagement;
 use bookmanagement;
-CREATE TABLE User (
-    ID INT PRIMARY KEY,
-    FirstName VARCHAR(255) NOT NULL,
-    LastName VARCHAR(255) NOT NULL,
-    Email VARCHAR(255) NOT NULL,
-    PhoneNumber VARCHAR(255) NOT NULL,
-    Password VARCHAR(15),
-    Type INT
+CREATE TABLE user (
+    id INT PRIMARY KEY,
+    firstname VARCHAR(255) NOT NULL,
+    lastname VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    phonenumber VARCHAR(255) NOT NULL,
+    password VARCHAR(15),
+    type INT
 );
 create table book(
-    ID int primary key,
-    Name varchar(225) not null,
-    Author varchar(225) not null,
-    Publisher varchar(225) not null,
-    Count int
+    id int primary key,
+    name varchar(225) not null,
+    author varchar(225) not null,
+    publisher varchar(225) not null,
+    count int
 );
