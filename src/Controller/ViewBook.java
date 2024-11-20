@@ -31,8 +31,13 @@ public class ViewBook implements Operation {
             e.printStackTrace();
         }
         for(Book b : books){
-            if(b.isAvailable() < 2){
-
+            if(b.getCount()>0){
+                System.out.println("ID: "+b.getID());
+                System.out.println("Name: "+b.getName());
+                System.out.println("Author: "+b.getAuthor());
+                System.out.println("Publisher: "+b.getPublisher());
+                System.out.println("Count: "+b.getCount());
+                System.out.println("--------------");
             }
         }
         System.out.println();

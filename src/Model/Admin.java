@@ -2,11 +2,12 @@ package Model;
 
 import Controller.AddNewAccount;
 import Controller.AddNewBook;
+import Controller.ViewBook;
 
 import java.util.Scanner;
 
 public class Admin extends User {
-    private Operation[] operations = new Operation[]{new AddNewBook(),new AddNewAccount(1)};
+    private Operation[] operations = new Operation[]{new AddNewBook(),new ViewBook(),new AddNewAccount(1)};
     public Admin() {
         super();
     }
