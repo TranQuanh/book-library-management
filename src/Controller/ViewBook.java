@@ -25,20 +25,12 @@ public class ViewBook implements Operation {
                 book.setAuthor(rs.getString("Author"));
                 book.setPublisher(rs.getString("Publisher"));
                 book.setCount(rs.getInt("Count"));
-                books.add(book);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         for(Book b : books){
-            if(b.getCount() >0){
-                System.out.println("ID: "+b.getID());
-                System.out.println("Name: "+b.getName());
-                System.out.println("Author: "+b.getAuthor());
-                System.out.println("Publisher: "+b.getPublisher());
-                System.out.println("Count: "+b.getCount());
-                System.out.println("------------------------");
-            }
+            if(b.is)
         }
         System.out.println();
     }
