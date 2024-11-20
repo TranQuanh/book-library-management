@@ -8,11 +8,11 @@ import java.util.Scanner;
 
 public class RentBook implements Operation {
     public void operation(Database database, Scanner sc, User user){
-        System.out.println("Enter Book ID (int): (-1 to show all cars)");
+        System.out.println("Enter Book ID (int): (-1 to show all books)");
         int bookID  = sc.nextInt();
         while(bookID == -1){
             new ViewBook().operation(database, sc, user);
-            System.out.println("Enter Book ID (int): (-1 to show all cars)");
+            System.out.println("Enter Book ID (int): (-1 to show all books)");
             bookID  = sc.nextInt();
         }
 
@@ -31,7 +31,7 @@ public class RentBook implements Operation {
             book.setPublisher(rs0.getString("publisher"));
             book.setCount(rs0.getInt("count"));
 
-            if(book.getCount() != 0) {
+            if(book.getCount() <= 0) {
                 System.out.println("Book isn't available!");
                 return;
             }
@@ -42,9 +42,10 @@ public class RentBook implements Operation {
 
             Rent rent = new Rent();
 
-            String insert = "INSERT INTO `rent` (`ID`,`User`,`Book`,`DateTime`,`Days`,`Status`)" +
+            String insert = "INSERT INTO `rent` (`id`,`userid`,`bookid`,`borrowtime`,`totaldays`,`Status`)" +
                     " VALUES('"+ID+"','"+user.getID()+"','"+book.getID()+"','"+rent.getBorrowTime()+"','"+days+"','"+0+"')";
             database.getStatement().execute(insert);
+            System.out.println("Book rented successfully!");
         } catch(SQLException e){
             e.printStackTrace();
         }
