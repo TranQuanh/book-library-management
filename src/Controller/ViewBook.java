@@ -25,12 +25,15 @@ public class ViewBook implements Operation {
                 book.setAuthor(rs.getString("Author"));
                 book.setPublisher(rs.getString("Publisher"));
                 book.setCount(rs.getInt("Count"));
+                books.add(book);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         for(Book b : books){
-            if(b.is)
+            if(b.isAvailable() < 2){
+
+            }
         }
         System.out.println();
     }
