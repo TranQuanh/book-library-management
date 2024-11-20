@@ -1,8 +1,11 @@
 package Model;
 
+import Controller.ViewBook;
+
 import java.util.Scanner;
 
 public class Client extends User{
+    private Operation[] operations = new Operation[]{new ViewBook()};
     public Client() {
         super();
     }

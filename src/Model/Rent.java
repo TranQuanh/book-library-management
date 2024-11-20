@@ -7,7 +7,6 @@ public class Rent {
     private User user;
     private Book book;
     private LocalDateTime borrowTime;
-    private LocalDateTime endTime;
     private int totalDays;
     private boolean status;
     private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss");
