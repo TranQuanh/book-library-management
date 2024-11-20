@@ -8,9 +8,10 @@ public class Rent {
     private Book book;
     private LocalDateTime borrowTime;
     private int totalDays;
-    private boolean status;
+    private int status;
     private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss");
-
+    // Status 0 ==> borrowing
+    // Status 1 ==> returned
     public Rent(){
         borrowTime = LocalDateTime.now();
     }
@@ -47,14 +48,6 @@ public class Rent {
         this.borrowTime = LocalDateTime.parse(borrowTime, formatter);
     }
 
-    public String getEndTime() {
-        return formatter.format(endTime);
-    }
-
-    public void setEndTime(String endTime) {
-        this.endTime = LocalDateTime.parse(endTime, formatter);
-    }
-
     public int getTotalDays() {
         return totalDays;
     }
@@ -63,11 +56,11 @@ public class Rent {
         this.totalDays = totalDays;
     }
 
-    public boolean isStatus() {
+    public int isStatus() {
         return status;
     }
 
-    public void setStatus(boolean status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 
