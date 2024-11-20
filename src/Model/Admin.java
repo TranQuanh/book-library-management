@@ -1,13 +1,15 @@
 package Model;
 
-import Controller.AddNewAccount;
-import Controller.AddNewBook;
-import Controller.ViewBook;
+import Controller.*;
 
 import java.util.Scanner;
 
 public class Admin extends User {
-    private Operation[] operations = new Operation[]{new AddNewBook(),new ViewBook(),new AddNewAccount(1)};
+    private Operation[] operations = new Operation[]{new AddNewBook(),
+            new ViewBook(),
+            new UpdateBook(),
+            new DeleteBook(),
+            new AddNewAccount(1)};
     public Admin() {
         super();
     }
@@ -22,7 +24,7 @@ public class Admin extends User {
         System.out.println("7. Quit\n");
 
         int i = sc.nextInt();
-        operations[i].operation(database,sc,this);
+        operations[i-1].operation(database,sc,this);
         showList(database,sc);
     }
 }
