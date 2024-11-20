@@ -16,3 +16,12 @@ create table book(
     publisher varchar(225) not null,
     count int
 );
+use bookmanagement;
+create table rent(
+	id int,
+    userid int,
+    bookid int,
+    borrowTime VARCHAR(250),
+    totaldays int,
+    status int
+);
