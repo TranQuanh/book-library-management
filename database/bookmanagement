@@ -21,7 +21,7 @@ create table rent(
 	id int,
     userid int,
     bookid int,
-    borrowTime VARCHAR(250),
+    borrowtime VARCHAR(250),
     totaldays int,
     status int
 );
