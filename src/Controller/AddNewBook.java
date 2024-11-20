@@ -10,13 +10,12 @@ import Model.User;
 public class AddNewBook implements Operation {
     @Override
     public void operation(Database database, Scanner sc, User user){
-        sc.nextLine();
         System.out.println("Enter name:");
-        String name = sc.nextLine();
+        String name = sc.next();
         System.out.println("Enter author:");
-        String author = sc.nextLine();
+        String author = sc.next();
         System.out.println("Enter publisher:");
-        String publisher = sc.nextLine();
+        String publisher = sc.next();
         System.out.println("Enter number of books");
         int count = sc.nextInt();
         try {
