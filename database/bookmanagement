@@ -16,7 +16,6 @@ create table book(
     publisher varchar(225) not null,
     count int
 );
-use bookmanagement;
 create table rent(
 	id int,
     userid int,
@@ -25,3 +24,4 @@ create table rent(
     totaldays int,
     status int
 );
+
