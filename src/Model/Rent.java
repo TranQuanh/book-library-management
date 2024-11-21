@@ -77,6 +77,10 @@ public class Rent {
         }
         return status;
     }
+    public int getDelayedDays(){
+        long passedDays = ChronoUnit.DAYS.between( borrowTime, LocalDateTime.now());
+        return (int) (passedDays-getTotalDays());
+    }
 
     public void setStatus(int status) {
         this.status = status;
