@@ -5,11 +5,16 @@ import Controller.*;
 import java.util.Scanner;
 
 public class Admin extends User {
-    private Operation[] operations = new Operation[]{new AddNewBook(),
+    private Operation[] operations = new Operation[]{
+            new AddNewBook(),
             new ViewBook(),
             new UpdateBook(),
             new DeleteBook(),
             new AddNewAccount(1),
+            new ShowAllRents(),
+            new ShowSpecUserRents(),
+            new EditUserData(),
+            new ChangePassword(),
             new Quit()
     };
     public Admin() {
@@ -22,18 +27,18 @@ public class Admin extends User {
         System.out.println("3. Update Book");
         System.out.println("4. Delete Book");
         System.out.println("5. Add New Admin");
-//        System.out.println("6. Show Rent's");
-//        System.out.println("7. Show User's Rents");
+        System.out.println("6. Show Rents");
+        System.out.println("7. Show User's Rents");
         System.out.println("8. Edit my Data");
         System.out.println("9. Change Password");
         System.out.println("10. Quit\n");
 
         int i = sc.nextInt();
-        if(i<1 || i>7){
+        if(i<1 || i>10){
             showList(database, sc);
             return;
         }
         operations[i-1].operation(database,sc,this);
-        showList(database,sc);
+        if(i!=10) showList(database,sc);
     }
 }
