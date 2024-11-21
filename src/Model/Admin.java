@@ -9,7 +9,9 @@ public class Admin extends User {
             new ViewBook(),
             new UpdateBook(),
             new DeleteBook(),
-            new AddNewAccount(1)};
+            new AddNewAccount(1),
+            new Quit()
+    };
     public Admin() {
         super();
     }
@@ -27,6 +29,10 @@ public class Admin extends User {
         System.out.println("10. Quit\n");
 
         int i = sc.nextInt();
+        if(i<1 || i>7){
+            showList(database, sc);
+            return;
+        }
         operations[i-1].operation(database,sc,this);
         showList(database,sc);
     }
