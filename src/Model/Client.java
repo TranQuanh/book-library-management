@@ -1,9 +1,6 @@
 package Model;
 
-import Controller.EditUserData;
-import Controller.RentBook;
-import Controller.ShowUserRents;
-import Controller.ViewBook;
+import Controller.*;
 
 import java.util.Scanner;
 
@@ -11,6 +8,7 @@ public class Client extends User{
     private Operation[] operations = new Operation[]{
             new ViewBook(),
             new RentBook(),
+            new ReturnBook(),
             new ShowUserRents(-99999),
             new EditUserData()
     };
