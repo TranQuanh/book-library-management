@@ -1,6 +1,7 @@
 package Model;
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 
 public class Rent {
     private int ID;
@@ -9,7 +10,7 @@ public class Rent {
     private LocalDateTime borrowTime;
     private int totalDays;
     private int status;
-    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss");
+    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
     // Status 0 ==> borrowing
     // Status 1 ==> returned
     public Rent(){
@@ -44,6 +45,10 @@ public class Rent {
         return formatter.format(borrowTime);
     }
 
+    public LocalDateTime getLocalBorrowTime() {
+        return borrowTime;
+    }
+
     public void setBorrowTime(String borrowTime) {
         this.borrowTime = LocalDateTime.parse(borrowTime, formatter);
     }
@@ -56,8 +61,25 @@ public class Rent {
         this.totalDays = totalDays;
     }
 
-    public int isStatus() {
+    public int getStatus() {
         return status;
+    }
+
+    public String getStatusToString() {
+        long passedDays = ChronoUnit.DAYS.between( borrowTime, LocalDateTime.now());
+        String status = "";
+        if (getStatus() != 1 && passedDays<getTotalDays()) {
+            status = "Estimated";
+        } else if (getStatus() != 1 && passedDays>getTotalDays()) {
+            status = "Delayed";
+        } else if (getStatus() == 1) {
+            status = "Rented";
+        }
+        return status;
+    }
+    public int getDelayedDays(){
+        long passedDays = ChronoUnit.DAYS.between( borrowTime, LocalDateTime.now());
+        return (int) (passedDays-getTotalDays());
     }
 
     public void setStatus(int status) {
