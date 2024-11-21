@@ -10,7 +10,7 @@ public class Client extends User{
             new RentBook(),
             new ShowUserRents(-99999),
             new EditUserData(),
-            new ChangePassword(),
+            new ChangePassword()
     };
     public Client() {
         super();
