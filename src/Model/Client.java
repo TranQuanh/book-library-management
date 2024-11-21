@@ -8,9 +8,11 @@ public class Client extends User{
     private Operation[] operations = new Operation[]{
             new ViewBook(),
             new RentBook(),
+            new ReturnBook(),
             new ShowUserRents(-99999),
             new EditUserData(),
-            new ChangePassword()
+            new ChangePassword(),
+            new Quit()
     };
     public Client() {
         super();
@@ -24,6 +26,10 @@ public class Client extends User{
         System.out.println("6. Change Password");
         System.out.println("7. Quit\n");
         int i = sc.nextInt();
+        if(i<1 || i>7){
+            showList(database,sc);
+            return;
+        }
         operations[i-1].operation(database,sc,this);
         showList(database,sc);
     }
