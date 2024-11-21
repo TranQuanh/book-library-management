@@ -48,7 +48,7 @@ public class UpdateBook implements Operation {
             if(publisher.equals("-1")) publisher = book.getPublisher();
 
             String update = "UPDATE `book` SET `name` = '"+name+"', `author` = '"+author+"', " +
-                    "`publisher` = '"+publisher + "'tsuWHERE `ID` = '"+ID+"';";
+                    "`publisher` = '"+publisher + "'WHERE `ID` = '"+ID+"';";
 
             database.getStatement().executeUpdate(update);
             System.out.println("Book updated successfully");
