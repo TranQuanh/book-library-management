@@ -30,7 +30,7 @@ public class ReturnBook implements Operation {
                 System.out.println(r.getDelayedDays()+"delayed days");
                 System.out.println("You delayed");
             }
-            String update = "UPDATE `book` SET `status`='1' WHERE `id` = '" + ID + "';";
+            String update = "UPDATE `rent` SET `status`='1' WHERE `id` = '" + ID + "';";
             database.getStatement().execute(update);
             System.out.println("Book returned successfully");
         } catch (SQLException e) {
