@@ -37,6 +37,11 @@ public class ViewBook implements Operation {
                 System.out.println("Author: "+b.getAuthor());
                 System.out.println("Publisher: "+b.getPublisher());
                 System.out.println("Count: "+b.getCount());
+                if (b.getCount() == 0){
+                    System.out.println("Status:\tNot Available");
+                } else {
+                    System.out.println("Status:\tAvailable");
+                }
                 System.out.println("--------------");
             }
         }
