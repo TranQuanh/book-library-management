@@ -31,6 +31,6 @@ public class Client extends User{
             return;
         }
         operations[i-1].operation(database,sc,this);
-        showList(database,sc);
+        if(i!=7) showList(database,sc);
     }
 }
