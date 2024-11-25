@@ -3,6 +3,9 @@ import Model.Database;
 import Model.User;
 import Model.Client;
 import Model.Admin;
+
+import javax.swing.*;
+import java.awt.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -11,17 +14,23 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Database database = new Database();
-        Scanner sc = new Scanner(System.in);
 
-        System.out.println("Welcome to Book Library Management");
-        System.out.println("Enter your email:\n(-1) to create new account");
-        String email = sc.next();
-        if (email.equals("-1")){
-            new AddNewAccount(0).operation(database,sc,null);
-            return;
-        }
-        System.out.println("Enter password:");
-        String password = sc.next();
+        JFrame frame = new JFrame("Login");
+        frame.setSize(600,330);
+        frame.setLocationRelativeTo(null);
+        frame.getContentPane().setBackground(new Color(250,206,27));
+        frame.setLayout(new BorderLayout());
+//        Scanner sc = new Scanner(System.in);
+//
+//        System.out.println("Welcome to Book Library Management");
+//        System.out.println("Enter your email:\n(-1) to create new account");
+//        String email = sc.next();
+//        if (email.equals("-1")){
+//            new AddNewAccount(0).operation(database,sc,null);
+//            return;
+//        }
+//        System.out.println("Enter password:");
+//        String password = sc.next();
 
         ArrayList<User> users = new ArrayList<>();
         try {
