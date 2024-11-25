@@ -19,7 +19,7 @@ public class ShowAllRents implements Operation {
             while(rs.next()){
                 Rent rent = new Rent();
                 rent.setID(rs.getInt("id"));
-                userIDs.add(rs.getInt("user"));
+                userIDs.add(rs.getInt("userid"));
                 bookIDs.add(rs.getInt("bookid"));
                 rent.setBorrowTime(rs.getString("borrowtime"));
                 rent.setTotalDays(rs.getInt("totaldays"));
