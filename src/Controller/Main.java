@@ -1,9 +1,9 @@
 package Controller;
 import Model.Database;
+import Model.JLabel;
 import Model.User;
 import Model.Client;
 import Model.Admin;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -23,7 +23,7 @@ public class Main {
         frame.getContentPane().setBackground(new Color(250,206,27));
         frame.setLayout(new BorderLayout());
 
-        JLabel title = new JLabel("Welcome to Book Management System", SwingConstants.CENTER);
+        JLabel title = new JLabel("Welcome to Book Management System",35);
         title.setBorder(BorderFactory.createEmptyBorder(20, 0, 0, 0));
         frame.add(title, BorderLayout.NORTH);
 
