@@ -7,18 +7,18 @@ import java.util.Scanner;
 
 public class Client extends User{
     private Operation[] operations = new Operation[]{
-            new ViewBook(),
-            new RentBook(),
-            new ReturnBook(),
-            new ShowUserRents(-99999),
-            new EditUserData(),
-            new ChangePassword(),
-            new Quit()
+//            new ViewBook(),
+//            new RentBook(),
+//            new ReturnBook(),
+//            new ShowUserRents(-99999),
+//            new EditUserData(),
+//            new ChangePassword(),
+//            new Quit()
     };
     public Client() {
         super();
     }
-    public void showList(Database database, JFrame f){
+    public void showList(Database database, JFrame f) {
         System.out.println("\n1. View Books");
         System.out.println("2. Rent Book");
         System.out.println("3. Return Book");

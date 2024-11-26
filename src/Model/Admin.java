@@ -7,16 +7,16 @@ import java.util.Scanner;
 
 public class Admin extends User {
     private Operation[] operations = new Operation[]{
-            new AddNewBook(),
-            new ViewBook(),
-            new UpdateBook(),
-            new DeleteBook(),
+//            new AddNewBook(),
+//            new ViewBook(),
+//            new UpdateBook(),
+//            new DeleteBook(),
             new AddNewAccount(1),
-            new ShowAllRents(),
-            new ShowSpecUserRents(),
-            new EditUserData(),
-            new ChangePassword(),
-            new Quit()
+//            new ShowAllRents(),
+//            new ShowSpecUserRents(),
+//            new EditUserData(),
+//            new ChangePassword(),
+//            new Quit()
     };
     public Admin() {
         super();
