@@ -17,7 +17,7 @@ public class Admin extends User {
 //            new ShowAllRents(),
 //            new ShowSpecUserRents(),
 //            new EditUserData(),
-//            new ChangePassword(),
+            new ChangePassword(),
 //            new Quit()
     };
     private JButton[] btns = new JButton[]{
