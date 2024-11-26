@@ -45,11 +45,11 @@ public class Main {
         panel.add(password);
 
         JButton createAcc = new JButton("Create New Account",22);
-        createAcc.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {}
-                new AddNewAccount(0).operation(database, frame, null);
-        });
+//        createAcc.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {}
+//                new AddNewAccount(0).operation(database, frame, null);
+//        });
         panel.add(createAcc);
 
         ArrayList<User> users = new ArrayList<>();

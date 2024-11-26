@@ -4,8 +4,8 @@ import Model.Database;
 import Model.Operation;
 import Model.User;
 
+import java.awt.*;
 import java.sql.SQLException;
-import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class EditUserData implements Operation {

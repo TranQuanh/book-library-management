@@ -18,7 +18,7 @@ public class AddNewAccount implements Operation {
     }
 
     @Override
-    public void operation(Database database, JFrame f, User user){
+    public void operation(Database database, Scanner sc, User user){
 //        System.out.println("Enter Firstname: ");
 //        String firstname = sc.next();
 //        System.out.println("Enter Lastname: ");

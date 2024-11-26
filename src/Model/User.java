@@ -1,7 +1,6 @@
 package Model;
 
 import javax.swing.*;
-import java.util.Scanner;
 
 public abstract class User {
     private int ID;
