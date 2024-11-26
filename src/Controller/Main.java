@@ -1,9 +1,12 @@
 package Controller;
 import Model.Database;
+import Model.JLabel;
+import Model.JButton;
+import Model.JTextField;
+import Model.JPasswordField;
 import Model.User;
 import Model.Client;
 import Model.Admin;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -13,22 +16,17 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import Model.JButton;
-import Model.JTextField;
-import Model.JLabel;
-import Model.JPasswordField;
-
 public class Main {
     public static void main(String[] args) {
         Database database = new Database();
 
         JFrame frame = new JFrame("Login");
-        frame.setSize(600,330);
+        frame.setSize(800,340);
         frame.setLocationRelativeTo(null);
         frame.getContentPane().setBackground(new Color(250,206,27));
         frame.setLayout(new BorderLayout());
 
-        JLabel title = new JLabel("Welcome to Book Management System", SwingConstants.CENTER);
+        JLabel title = new JLabel("Welcome to Book Management System",35);
         title.setBorder(BorderFactory.createEmptyBorder(20, 0, 0, 0));
         frame.add(title, BorderLayout.NORTH);
 
@@ -47,6 +45,12 @@ public class Main {
         panel.add(password);
 
         JButton createAcc = new JButton("Create New Account",22);
+        createAcc.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new AddNewAccount(0).operation(database, frame, null);
+            }
+        });
         panel.add(createAcc);
 
         ArrayList<User> users = new ArrayList<>();
@@ -105,12 +109,12 @@ public class Main {
                     if(u.getEmail().equals(email.getText()) && u.getPassword().equals(password.getText())) {
                         System.out.println("Welcome "+u.getFirstName()+"!");
                         loggedIn = true;
-                        System.out.println("Logged in successfully");
-                        //               u.showList(database,sc);
+                        u.showList(database,frame);
+                        frame.dispose();
                     }
                 }
                 if(!loggedIn) {
-                    System.out.println("Email or password doesn't match");
+                    JOptionPane.showMessageDialog(frame, "Email or password doesn't match");
                 }
             }
         });

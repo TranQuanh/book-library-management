@@ -1,6 +1,6 @@
 package Model;
 
-import java.util.Scanner;
+import javax.swing.*;
 
 public abstract class User {
     private int ID;
@@ -66,5 +66,5 @@ public abstract class User {
         this.password = password;
     }
 
-    public abstract void showList(Database database, Scanner s);
+    public abstract void showList(Database database, JFrame f);
 }
