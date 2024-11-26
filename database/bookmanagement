@@ -24,4 +24,21 @@ create table rent(
     totaldays int,
     status int
 );
+DELIMITER $$
 
+CREATE TRIGGER rent_after_insert
+AFTER INSERT ON rent
+FOR EACH ROW
+BEGIN
+    IF NEW.status = 0 THEN
+        UPDATE book
+        SET count = count - 1
+        WHERE id = NEW.bookid;
+    ELSEIF NEW.status = 1 THEN
+        UPDATE book
+        SET count = count + 1
+        WHERE id = NEW.bookid;
+    END IF;
+END$$
+
+DELIMITER ;

@@ -18,7 +18,7 @@ public class Main {
         Database database = new Database();
 
         JFrame frame = new JFrame("Login");
-        frame.setSize(600,330);
+        frame.setSize(800,340);
         frame.setLocationRelativeTo(null);
         frame.getContentPane().setBackground(new Color(250,206,27));
         frame.setLayout(new BorderLayout());
