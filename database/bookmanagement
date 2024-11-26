@@ -17,12 +17,12 @@ create table book(
     count int
 );
 create table rent(
-	id int,
-    userid int,
-    bookid int,
-    borrowtime VARCHAR(250),
-    totaldays int,
-    status int
+	id int primary key,
+    userid int not null,
+    bookid int not null,
+    borrowtime VARCHAR(250) noy null,
+    totaldays int not null,
+    status int not null
 );
 DELIMITER $$
 

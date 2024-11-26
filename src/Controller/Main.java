@@ -112,7 +112,6 @@ public class Main {
                 boolean loggedIn =false;
                 for(User u : users) {
                     if(u.getEmail().equals(email.getText()) && u.getPassword().equals(password.getText())) {
-                        System.out.println("Welcome "+u.getFirstName()+"!");
                         loggedIn = true;
                         u.showList(database,frame);
                         frame.dispose();
