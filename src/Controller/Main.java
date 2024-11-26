@@ -21,7 +21,7 @@ public class Main {
         Database database = new Database();
 
         JFrame frame = new JFrame("Login");
-        frame.setSize(600,330);
+        frame.setSize(800,340);
         frame.setLocationRelativeTo(null);
         frame.getContentPane().setBackground(new Color(250,206,27));
         frame.setLayout(new BorderLayout());
@@ -45,11 +45,11 @@ public class Main {
         panel.add(password);
 
         JButton createAcc = new JButton("Create New Account",22);
-        createAcc.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {}
-                new AddNewAccount(0).operation(database, frame, null);
-        });
+//        createAcc.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {}
+//                new AddNewAccount(0).operation(database, frame, null);
+//        });
         panel.add(createAcc);
 
         ArrayList<User> users = new ArrayList<>();
