@@ -6,13 +6,13 @@ import java.util.Scanner;
 
 public class Client extends User{
     private Operation[] operations = new Operation[]{
-            new ViewBook(),
-            new RentBook(),
-            new ReturnBook(),
-            new ShowUserRents(-99999),
-            new EditUserData(),
-            new ChangePassword(),
-            new Quit()
+//            new ViewBook(),
+//            new RentBook(),
+//            new ReturnBook(),
+//            new ShowUserRents(-99999),
+//            new EditUserData(),
+//            new ChangePassword(),
+//            new Quit()
     };
     public Client() {
         super();
@@ -30,7 +30,7 @@ public class Client extends User{
             showList(database,sc);
             return;
         }
-        operations[i-1].operation(database,sc,this);
-        if(i!=7) showList(database,sc);
+//        operations[i-1].operation(database,sc,this);
+//        if(i!=7) showList(database,sc);
     }
 }

@@ -13,6 +13,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import Model.JButton;
+import Model.JTextField;
+import Model.JLabel;
+import Model.JPasswordField;
+
 public class Main {
     public static void main(String[] args) {
         Database database = new Database();
@@ -41,7 +46,7 @@ public class Main {
         JPasswordField password = new JPasswordField(22);
         panel.add(password);
 
-        JButton createAcc = new JButton("Create New Account");
+        JButton createAcc = new JButton("Create New Account",22);
         panel.add(createAcc);
 
         ArrayList<User> users = new ArrayList<>();
@@ -84,7 +89,7 @@ public class Main {
             e.printStackTrace();
         }
 
-        JButton login = new JButton("Login");
+        JButton login = new JButton("Login",22);
         login.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if(email.getText().equals((""))){
