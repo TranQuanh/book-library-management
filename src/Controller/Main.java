@@ -1,6 +1,9 @@
 package Controller;
 import Model.Database;
 import Model.JLabel;
+import Model.JButton;
+import Model.JTextField;
+import Model.JPasswordField;
 import Model.User;
 import Model.Client;
 import Model.Admin;
@@ -41,7 +44,12 @@ public class Main {
         JPasswordField password = new JPasswordField(22);
         panel.add(password);
 
-        JButton createAcc = new JButton("Create New Account");
+        JButton createAcc = new JButton("Create New Account",22);
+        createAcc.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {}
+                new AddNewAccount(0).operation(database, frame, null);
+        });
         panel.add(createAcc);
 
         ArrayList<User> users = new ArrayList<>();
@@ -84,7 +92,7 @@ public class Main {
             e.printStackTrace();
         }
 
-        JButton login = new JButton("Login");
+        JButton login = new JButton("Login",22);
         login.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if(email.getText().equals((""))){
@@ -100,12 +108,12 @@ public class Main {
                     if(u.getEmail().equals(email.getText()) && u.getPassword().equals(password.getText())) {
                         System.out.println("Welcome "+u.getFirstName()+"!");
                         loggedIn = true;
-                        System.out.println("Logged in successfully");
-                        //               u.showList(database,sc);
+                        u.showList(database,frame);
+                        frame.dispose();
                     }
                 }
                 if(!loggedIn) {
-                    System.out.println("Email or password doesn't match");
+                    JOptionPane.showMessageDialog(frame, "Email or password doesn't match");
                 }
             }
         });
