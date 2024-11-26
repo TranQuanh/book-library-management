@@ -1,0 +1,44 @@
+create database bookmanagement;
+use bookmanagement;
+CREATE TABLE user (
+    id INT PRIMARY KEY,
+    firstname VARCHAR(255) NOT NULL,
+    lastname VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    phonenumber VARCHAR(255) NOT NULL,
+    password VARCHAR(15),
+    type INT
+);
+create table book(
+    id int primary key,
+    name varchar(225) not null,
+    author varchar(225) not null,
+    publisher varchar(225) not null,
+    count int
+);
+create table rent(
+	id int primary key,
+    userid int not null,
+    bookid int not null,
+    borrowtime VARCHAR(250) noy null,
+    totaldays int not null,
+    status int not null
+);
+DELIMITER $$
+
+CREATE TRIGGER rent_after_insert
+AFTER INSERT ON rent
+FOR EACH ROW
+BEGIN
+    IF NEW.status = 0 THEN
+        UPDATE book
+        SET count = count - 1
+        WHERE id = NEW.bookid;
+    ELSEIF NEW.status = 1 THEN
+        UPDATE book
+        SET count = count + 1
+        WHERE id = NEW.bookid;
+    END IF;
+END$$
+
+DELIMITER ;

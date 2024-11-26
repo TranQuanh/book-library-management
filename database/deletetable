@@ -1,0 +1,4 @@
+USE bookmanagement;
+DROP TABLE user;
+DROP TABLE book;
+DROP TABLE rent;
