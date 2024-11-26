@@ -2,6 +2,7 @@ package Model;
 
 import Controller.*;
 
+import javax.swing.*;
 import java.util.Scanner;
 
 public class Admin extends User {
@@ -21,7 +22,7 @@ public class Admin extends User {
         super();
     }
     @Override
-    public void showList(Database database, Scanner sc) {
+    public void showList(Database database, JFrame f) {
         System.out.println("\n1. Add New Book");
         System.out.println("2. View Books");
         System.out.println("3. Update Book");
@@ -33,12 +34,12 @@ public class Admin extends User {
         System.out.println("9. Change Password");
         System.out.println("10. Quit\n");
 
-        int i = sc.nextInt();
-        if(i<1 || i>10){
-            showList(database, sc);
-            return;
-        }
-        operations[i-1].operation(database,sc,this);
-        if(i!=10) showList(database,sc);
+//        int i = sc.nextInt();
+//        if(i<1 || i>10){
+//            showList(database, sc);
+//            return;
+//        }
+//        operations[i-1].operation(database,sc,this);
+//        if(i!=10) showList(database,sc);
     }
 }
