@@ -17,13 +17,17 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
-        Database database = new Database();
+    private static Database database;
 
+    public static void main(String[] args) {
+        database = new Database();
+        start();
+    }
+    public static void start() {
         JFrame frame = new JFrame("Login");
         frame.setSize(800,340);
         frame.setLocationRelativeTo(null);
-        frame.getContentPane().setBackground(new Color(250,206,27));
+        frame.getContentPane().setBackground(new Color(27, 250, 183));
         frame.setLayout(new BorderLayout());
 
         JLabel title = new JLabel("Welcome to Book Management System",35);
@@ -49,6 +53,7 @@ public class Main {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new AddNewAccount(0).operation(database, frame, null);
+                frame.dispose();
             }
         });
         panel.add(createAcc);

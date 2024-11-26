@@ -1,6 +1,8 @@
 package Controller;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.Array;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -38,12 +40,12 @@ public class AddNewAccount implements Operation {
         panel.setBorder(BorderFactory.createEmptyBorder(20,20,20,20));
 
         panel.add(new JLabel("First Name:",22));
-        JTextField firstName = new JTextField(22);
-        panel.add(firstName);
+        JTextField firstname = new JTextField(22);
+        panel.add(firstname);
 
         panel.add(new JLabel("Last Name:",22));
-        JTextField lastName = new JTextField(22);
-        panel.add(lastName);
+        JTextField lastname = new JTextField(22);
+        panel.add(lastname);
 
         panel.add(new JLabel("Email:",22));
         JTextField email = new JTextField(22);
@@ -62,72 +64,88 @@ public class AddNewAccount implements Operation {
         panel.add(confirmPassword);
 
         JButton login = new JButton("Login",22);
+        login.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Main.start();
+                frame.dispose();
+            }
+        });
         panel.add(login);
 
         JButton createAcc = new JButton("Create Account",22);
+        createAcc.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (firstname.getText().equals("")) {
+                    JOptionPane.showMessageDialog(frame, "First Name cannot be empty");
+                    return;
+                }
+                if (lastname.getText().equals("")) {
+                    JOptionPane.showMessageDialog(frame, "Last Name cannot be empty");
+                    return;
+                }
+                if (email.getText().equals("")) {
+                    JOptionPane.showMessageDialog(frame, "Email cannot be empty");
+                    return;
+                }
+                if (phone.getText().equals("")) {
+                    JOptionPane.showMessageDialog(frame, "Phone Number cannot be empty");
+                    return;
+                }
+                if (password.getText().equals("")) {
+                    JOptionPane.showMessageDialog(frame, "Password cannot be empty");
+                    return;
+                }
+                if (confirmPassword.getText().equals("")) {
+                    JOptionPane.showMessageDialog(frame, "Confirm Password cannot be empty");
+                    return;
+                }
+                if (!password.getText().equals(confirmPassword.getText())) {
+                    JOptionPane.showMessageDialog(frame, "Password does not match");
+                    return;
+                }
+                try {
+                    ArrayList<String> emails = new ArrayList<>();
+                    ResultSet rs0 = database.getStatement().executeQuery("SELECT `Email` FROM `user`;");
+                    while (rs0.next()) {
+                        emails.add(rs0.getString("Email"));
+                    }
+
+                    if (emails.contains(email.getText())) {
+                        JOptionPane.showMessageDialog(frame, "Email Already Exists");
+                        return;
+                    }
+
+                    ResultSet rs = database.getStatement().executeQuery("SELECT COUNT(*) as count FROM user");
+                    rs.next();
+                    int ID = rs.getInt("count") + 1;
+                    String insert = "INSERT INTO `user`(`id`,`firstname`,`lastname`, " +
+                            " `email`,`phonenumber`,`password`,`type`) VALUES " +
+                            " ('" + ID + "', '" + firstname.getText() + "', '" + lastname.getText() + "', '" + email.getText() + "'," +
+                            "'" + phone.getText() + "','" + password.getText() + "','" + accType + "');";
+                    database.getStatement().execute(insert);
+                    JOptionPane.showMessageDialog(frame, "Account Created Successfully");
+
+                    if (accType == 0) {
+                        User user = new Client();
+                        user.setID(ID);
+                        user.setFirstName(firstname.getText());
+                        user.setLastName(lastname.getText());
+                        user.setEmail(email.getText());
+                        user.setPhoneNumber(phone.getText());
+                        user.setPassword(password.getText());
+                        user.showList(database, frame);
+                    }
+                } catch (SQLException e1) {
+                    JOptionPane.showMessageDialog(frame, e1.getMessage());
+                }
+            }
+
+        });
         panel.add(createAcc);
 
-        frame.add(panel,BorderLayout.CENTER);
+        frame.add(panel, BorderLayout.CENTER);
         frame.setVisible(true);
-
-
-//        System.out.println("Enter Firstname: ");
-//        String firstname = sc.next();
-//        System.out.println("Enter Lastname: ");
-//        String lastname = sc.next();
-//        System.out.println("Enter Email: ");
-//        String email = sc.next();
-//        System.out.println("Enter Phone Number: ");
-//        String phone = sc.next();
-//        System.out.println("Enter Password: ");
-//        String password = sc.next();
-//        System.out.println("Confirm Password: ");
-//        String confirmPassword = sc.next();
-//        while(!confirmPassword.equals(password)){
-//            System.out.println("Password does not match!");
-//            System.out.println("Enter Password: ");
-//            password = sc.nextLine();
-//            System.out.println("Confirm Password: ");
-//            confirmPassword = sc.nextLine();
-//        }
-//
-//        try{
-//            //Check valid email
-//            ArrayList<String> emails = new ArrayList<>();
-//            ResultSet rs0 = database.getStatement().executeQuery("SELECT `Email` FROM `user`;");
-//            while(rs0.next()){
-//                emails.add(rs0.getString("Email"));
-//            }
-//
-//            if (emails.contains(email)){
-//                System.out.println("Email Already Exists");
-//                return;
-//            }
-//
-//            ResultSet rs = database.getStatement().executeQuery("SELECT COUNT(*) as count FROM user");
-//            rs.next();
-//            int ID = rs.getInt("count") + 1;
-//            String insert = "INSERT INTO `user`(`id`,`firstname`,`lastname`, " +
-//                    " `email`,`phonenumber`,`password`,`type`) VALUES " +
-//                    " ('"+ID+"', '"+firstname+"', '"+lastname+"', '"+email+"'," +
-//                    "'"+phone+"','"+password+"','"+accType+"');";
-//            database.getStatement().execute(insert);
-//            System.out.println("Account created succesfully!\n");
-//
-//            if (accType ==0){
-//                user = new Client();
-//                user.setID(ID);
-//                user.setFirstName(firstname);
-//                user.setLastName(lastname);
-//                user.setEmail(email);
-//                user.setPhoneNumber(phone);
-//                user.setPassword(password);
-//                user.showList(database,sc);
-//            }
-//
-//
-//        } catch (SQLException e){
-//            e.printStackTrace();
-//        }
     }
 }
