@@ -16,6 +16,7 @@ import Model.JLabel;
 import Model.JTextField;
 
 import javax.swing.*;
+import Model.JPasswordField;
 
 public class AddNewAccount implements Operation {
     private int accType;
@@ -56,11 +57,11 @@ public class AddNewAccount implements Operation {
         panel.add(phone);
 
         panel.add(new JLabel("Password:",22));
-        JTextField password = new JTextField(22);
+        JPasswordField password = new JPasswordField(22);
         panel.add(password);
 
         panel.add(new JLabel("Confirm Password:",22));
-        JTextField confirmPassword = new JTextField(22);
+        JPasswordField confirmPassword = new JPasswordField(22);
         panel.add(confirmPassword);
 
         JButton login = new JButton("Login",22);

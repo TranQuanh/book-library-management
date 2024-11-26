@@ -41,7 +41,7 @@ public class Admin extends User {
         frame.setLocationRelativeTo(f);
         frame.getContentPane().setBackground(new Color(250,206,27));
         frame.setLayout(new BorderLayout());
-        JLabel title = new JLabel("Welcome"+getFirstName(),30);
+        JLabel title = new JLabel("Welcome Admin:"+getFirstName(),30);
         title.setBorder(BorderFactory.createEmptyBorder(15,0,0,0));
         frame.add(title, BorderLayout.NORTH);
 
