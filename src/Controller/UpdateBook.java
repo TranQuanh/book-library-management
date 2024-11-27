@@ -22,7 +22,7 @@ public class UpdateBook implements Operation {
     private JFrame frame;
 
     @Override
-    public void operation(Database database, Frame f, User user) {
+    public void operation(Database database, JFrame f, User user) {
 
         this.database = database;
 
@@ -119,11 +119,12 @@ public class UpdateBook implements Operation {
                 }
                 try{
                 String update = "UPDATE `book` SET `name` = '"+name.getText()+"', `author` = '"+author.getText()+"', " +
-                    "`publisher` = '"+publisher.getText()+ "'WHERE `ID` = '"+ID.getSelectedItem().toString()+"';";
+                    "`publisher` = '"+publisher.getText()+ "'WHERE `ID` = '"+id.getSelectedItem()+"';";
                 database.getStatement().executeUpdate(update);
                 JOptionPane.showMessageDialog(frame, "Book updated successfully");
                 frame.dispose();
                 } catch (SQLException e2) {
+                    System.out.println("1234");
                     JOptionPane.showMessageDialog(frame, e2.getMessage());
                 }
             }
@@ -132,6 +133,7 @@ public class UpdateBook implements Operation {
 
         frame.add(panel, BorderLayout.CENTER);
         frame.setVisible(true);
+        frame.requestFocus();
 
 
 //        System.out.println("Enter book ID(int):(-1 to show all books)");
@@ -189,7 +191,7 @@ public class UpdateBook implements Operation {
         else{
             try {
                 ResultSet rs1 = database.getStatement()
-                        .executeQuery("SELECT * FROM `book` WHERE `ID` = '" + ID + "';");
+                        .executeQuery("SELECT * FROM `book` WHERE `ID` = '" + ID+ "';");
                 rs1.next();
                 Book book = new Book();
                 book.setID(rs1.getInt("ID"));
@@ -197,6 +199,7 @@ public class UpdateBook implements Operation {
                 author.setText(rs1.getString("author"));
                 publisher.setText(rs1.getString("publisher"));
             }catch(Exception e1){
+                System.out.println("345");
                 JOptionPane.showMessageDialog(frame, e1.getMessage());
                 frame.dispose();
             }
