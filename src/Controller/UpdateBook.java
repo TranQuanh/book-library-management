@@ -44,11 +44,12 @@ public class UpdateBook implements Operation {
         String[] ids= new String[] {" "};
         ArrayList<Integer> idsArray = new ArrayList<>();
         try{
-            ResultSet rs1 = database.getStatement().executeQuery("SELECT 'ID' FROM `book` ");
+            ResultSet rs1 = database.getStatement().executeQuery("SELECT `id` FROM `book` ");
             while (rs1.next()) {
                 idsArray.add(rs1.getInt("ID"));
             }
         } catch (Exception e0){
+            System.out.println("0202");
             JOptionPane.showMessageDialog(frame, e0.getMessage());
             frame.dispose();
         };
