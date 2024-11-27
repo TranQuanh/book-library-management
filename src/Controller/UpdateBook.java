@@ -52,7 +52,7 @@ public class UpdateBook implements Operation {
             System.out.println("0202");
             JOptionPane.showMessageDialog(frame, e0.getMessage());
             frame.dispose();
-        };
+        }
 
         ids = new String[idsArray.size() + 1];
         ids[0] = " ";
@@ -91,7 +91,6 @@ public class UpdateBook implements Operation {
             public void actionPerformed(ActionEvent e) {
                 frame.dispose();
             }
-
         });
         panel.add(cancel);
 
@@ -99,31 +98,49 @@ public class UpdateBook implements Operation {
         save.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                // Validate inputs
+                if (id.getSelectedItem().equals(" ")) {
+                    JOptionPane.showMessageDialog(frame, "Please select a book ID");
+                    return;
+                }
+
                 if (name.getText().equals("")) {
                     JOptionPane.showMessageDialog(frame, "Please enter a title");
+                    return;
                 }
+
                 if (author.getText().equals("")) {
-                    JOptionPane.showMessageDialog(frame, "Please enter a author");
+                    JOptionPane.showMessageDialog(frame, "Please enter an author");
+                    return;
                 }
+
                 if (publisher.getText().equals("")) {
                     JOptionPane.showMessageDialog(frame, "Please enter a publisher");
+                    return;
                 }
+
                 if (number.getText().equals("")) {
-                    JOptionPane.showMessageDialog(frame, "Please enter a number");
+                    JOptionPane.showMessageDialog(frame, "Please enter a number of books");
+                    return;
                 }
-                int num ;
+
+                int num;
                 try {
                     num = Integer.parseInt(number.getText());
                 } catch (NumberFormatException ex) {
-                    JOptionPane.showMessageDialog(frame, "Please enter a number");
+                    JOptionPane.showMessageDialog(frame, "Please enter a valid number");
                     return;
                 }
-                try{
-                String update = "UPDATE `book` SET `name` = '"+name.getText()+"', `author` = '"+author.getText()+"', " +
-                    "`publisher` = '"+publisher.getText()+ "'WHERE `ID` = '"+id.getSelectedItem()+"';";
-                database.getStatement().executeUpdate(update);
-                JOptionPane.showMessageDialog(frame, "Book updated successfully");
-                frame.dispose();
+
+                try {
+                    String update = "UPDATE `book` SET `name` = '"+name.getText()+"', " +
+                            "`author` = '"+author.getText()+"', " +
+                            "`publisher` = '"+publisher.getText()+"', " +
+                            "`count` = '"+num+"' " +
+                            "WHERE `ID` = '"+id.getSelectedItem()+"';";
+                    database.getStatement().executeUpdate(update);
+                    JOptionPane.showMessageDialog(frame, "Book updated successfully");
+                    frame.dispose();
                 } catch (SQLException e2) {
                     System.out.println("1234");
                     JOptionPane.showMessageDialog(frame, e2.getMessage());
@@ -135,71 +152,25 @@ public class UpdateBook implements Operation {
         frame.add(panel, BorderLayout.CENTER);
         frame.setVisible(true);
         frame.requestFocus();
-
-
-//        System.out.println("Enter book ID(int):(-1 to show all books)");
-//        int ID = sc.nextInt();
-//        while(ID == -1){
-//            new ViewBook().operation(database, sc, user);
-//            System.out.println("Enter book ID(int):(-1 to show all books)");
-//            ID = sc.nextInt();
-//        }
-//        try{
-//            ResultSet rs1 = database.getStatement()
-//                    .executeQuery("SELECT * FROM `book` WHERE `ID` = '"+ID+"';");
-//            rs1.next();
-//            Book book = new Book();
-//            book.setID(rs1.getInt("ID"));
-//            book.setName(rs1.getString("name"));
-//            book.setAuthor(rs1.getString("author"));
-//            book.setPublisher(rs1.getString("publisher"));
-//            book.setCount(rs1.getInt("count"));
-//
-//            if(book.getCount() == 0) {
-//                System.out.println("Book does not exist");
-//                return;
-//            }
-//
-//            System.out.println("Enter Name: (-1: "+book.getName()+")");
-//            String name = sc.next();
-//            if(name.equals("-1")) name = book.getName();
-//
-//            System.out.println("Enter Author: (-1: "+book.getAuthor()+")");
-//            String author = sc.next();
-//            if(author.equals("-1")) author = book.getAuthor();
-//
-//            System.out.println("Enter Publisher: (-1: "+book.getPublisher()+")");
-//            String publisher = sc.next();
-//            if(publisher.equals("-1")) publisher = book.getPublisher();
-//
-//            String update = "UPDATE `book` SET `name` = '"+name+"', `author` = '"+author+"', " +
-//                    "`publisher` = '"+publisher + "'WHERE `ID` = '"+ID+"';";
-//
-//            database.getStatement().executeUpdate(update);
-//            System.out.println("Book updated successfully");
-//
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-
     }
+
     private void updateData(String ID) {
         if (ID.equals(" ")) {
             name.setText("");
             author.setText("");
             publisher.setText("");
+            number.setText("");
         }
-        else{
+        else {
             try {
                 ResultSet rs1 = database.getStatement()
                         .executeQuery("SELECT * FROM `book` WHERE `ID` = '" + ID+ "';");
                 rs1.next();
-                Book book = new Book();
-                book.setID(rs1.getInt("ID"));
                 name.setText(rs1.getString("name"));
                 author.setText(rs1.getString("author"));
                 publisher.setText(rs1.getString("publisher"));
-            }catch(Exception e1){
+                number.setText(String.valueOf(rs1.getInt("count")));
+            } catch(Exception e1) {
                 System.out.println("345");
                 JOptionPane.showMessageDialog(frame, e1.getMessage());
                 frame.dispose();
