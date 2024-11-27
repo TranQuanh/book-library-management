@@ -127,7 +127,7 @@ public class AddNewAccount implements Operation {
                             "'" + phone.getText() + "','" + password.getText() + "','" + accType + "');";
                     database.getStatement().execute(insert);
                     JOptionPane.showMessageDialog(frame, "Account Created Successfully");
-
+                    frame.dispose();
                     if (accType == 0) {
                         User user = new Client();
                         user.setID(ID);
