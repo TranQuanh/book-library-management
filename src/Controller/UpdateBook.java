@@ -94,6 +94,46 @@ public class UpdateBook implements Operation {
         });
         panel.add(cancel);
 
+        JButton save = new JButton("Save",22);
+        save.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (name.getText().equals("")) {
+                    JOptionPane.showMessageDialog(frame, "Please enter a title");
+                }
+                if (author.getText().equals("")) {
+                    JOptionPane.showMessageDialog(frame, "Please enter a author");
+                }
+                if (publisher.getText().equals("")) {
+                    JOptionPane.showMessageDialog(frame, "Please enter a publisher");
+                }
+                if (number.getText().equals("")) {
+                    JOptionPane.showMessageDialog(frame, "Please enter a number");
+                }
+                int num ;
+                try {
+                    num = Integer.parseInt(number.getText());
+                } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(frame, "Please enter a number");
+                    return;
+                }
+                try{
+                String update = "UPDATE `book` SET `name` = '"+name.getText()+"', `author` = '"+author.getText()+"', " +
+                    "`publisher` = '"+publisher.getText()+ "'WHERE `ID` = '"+ID.getSelectedItem().toString()+"';";
+                database.getStatement().executeUpdate(update);
+                JOptionPane.showMessageDialog(frame, "Book updated successfully");
+                frame.dispose();
+                } catch (SQLException e2) {
+                    JOptionPane.showMessageDialog(frame, e2.getMessage());
+                }
+            }
+        });
+        panel.add(save);
+
+        frame.add(panel, BorderLayout.CENTER);
+        frame.setVisible(true);
+
+
 //        System.out.println("Enter book ID(int):(-1 to show all books)");
 //        int ID = sc.nextInt();
 //        while(ID == -1){
@@ -145,6 +185,21 @@ public class UpdateBook implements Operation {
             name.setText("");
             author.setText("");
             publisher.setText("");
+        }
+        else{
+            try {
+                ResultSet rs1 = database.getStatement()
+                        .executeQuery("SELECT * FROM `book` WHERE `ID` = '" + ID + "';");
+                rs1.next();
+                Book book = new Book();
+                book.setID(rs1.getInt("ID"));
+                name.setText(rs1.getString("name"));
+                author.setText(rs1.getString("author"));
+                publisher.setText(rs1.getString("publisher"));
+            }catch(Exception e1){
+                JOptionPane.showMessageDialog(frame, e1.getMessage());
+                frame.dispose();
+            }
         }
     }
 }
