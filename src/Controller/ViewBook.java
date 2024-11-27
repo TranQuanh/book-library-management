@@ -2,10 +2,15 @@ package Controller;
 
 import Model.Book;
 import Model.Database;
+import Model.JLabel;
+import Model.JTable;
 import Model.Operation;
 import Model.User;
 
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -14,7 +19,23 @@ import java.util.Scanner;
 public class ViewBook implements Operation {
     @Override
     public void operation(Database database, JFrame f, User user) {
-        System.out.println();
+
+        JFrame frame = new JFrame();
+        frame.setSize(1200,750);
+        frame.setLocationRelativeTo(f);
+        frame.getContentPane().setBackground(new Color(255, 208, 208));
+        frame.setLayout(new BorderLayout());
+
+        JLabel title = new JLabel("List of Books",45);
+        title.setBorder(BorderFactory.createEmptyBorder(20,0,0,0));
+        title.setFont(new Font("Noto Serif", Font.BOLD, 45));
+        title.setForeground(new Color(168, 118, 118));
+        frame.add(title,BorderLayout.NORTH);
+
+        String[] header = new String[]{
+                "ID", "Title", "Author", "Publisher", "Count"
+        };
+
         String select = "SELECT * FROM `book`;";
         ArrayList<Book> books = new ArrayList<>();
         try{
@@ -29,23 +50,29 @@ public class ViewBook implements Operation {
                 books.add(book);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(frame,e.getMessage());
         }
-        for(Book b : books){
-            if(b.getCount()>0){
-                System.out.println("ID: "+b.getID());
-                System.out.println("Name: "+b.getName());
-                System.out.println("Author: "+b.getAuthor());
-                System.out.println("Publisher: "+b.getPublisher());
-                System.out.println("Count: "+b.getCount());
-                if (b.getCount() == 0){
-                    System.out.println("Status:\tNot Available");
-                } else {
-                    System.out.println("Status:\tAvailable");
-                }
-                System.out.println("--------------");
-            }
+
+        String[][] booksData = new String[books.size()][6];
+
+        for (int i = 0; i < books.size(); i++) {
+            Book b = books.get(i);
+//            if(b.getCount()>0){
+                booksData[i][0] = String.valueOf(b.getID());
+                booksData[i][1] = b.getName();
+                booksData[i][2] = b.getAuthor();
+                booksData[i][3] = b.getPublisher();
+                booksData[i][4] = String.valueOf(b.getCount());
+//            }
         }
-        System.out.println();
+
+        Color color2 = new Color(255, 208, 208);
+        Color color1 = new Color(168, 118, 118);
+
+        JScrollPane scrollPane = new JScrollPane(new JTable(booksData, header, color1, color2));
+        scrollPane.setBackground(null);
+        scrollPane.setBorder(BorderFactory.createEmptyBorder(20,20,20,20));
+        frame.add(scrollPane,BorderLayout.CENTER);
+        frame.setVisible(true);
     }
 }
