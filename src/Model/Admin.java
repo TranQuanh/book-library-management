@@ -9,9 +9,9 @@ import java.awt.event.ActionListener;
 import java.util.Scanner;
 public class Admin extends User {
     private Operation[] operations = new Operation[]{
-//            new AddNewBook(),
-//            new ViewBook(),
-//            new UpdateBook(),
+            new AddNewBook(),
+            new ViewBook(),
+            new UpdateBook(),
 //            new DeleteBook(),
             new AddNewAccount(1),
 //            new ShowAllRents(),
