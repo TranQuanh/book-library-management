@@ -12,7 +12,7 @@ public class Admin extends User {
             new AddNewBook(),
             new ViewBook(),
             new UpdateBook(),
-//            new DeleteBook(),
+            new DeleteBook(),
             new AddNewAccount(1),
 //            new ShowAllRents(),
 //            new ShowSpecUserRents(),
