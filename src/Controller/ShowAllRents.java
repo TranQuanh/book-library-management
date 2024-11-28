@@ -1,73 +1,114 @@
-//package Controller;
-//
-//import Model.*;
-//
-//import java.sql.ResultSet;
-//import java.sql.SQLException;
-//import java.util.ArrayList;
-//import java.util.Scanner;
-//
-//public class ShowAllRents implements Operation {
-//    @Override
-//    public void operation(Database database, Scanner sc, User user) {
-//        ArrayList<Rent> rents = new ArrayList<>();
-//        ArrayList<Integer> bookIDs = new ArrayList<>();
-//        ArrayList<Integer> userIDs = new ArrayList<>();
-//        try{
-//            String select = "SELECT * FROM `rent` ;";
-//            ResultSet rs = database.getStatement().executeQuery(select);
-//            while(rs.next()){
-//                Rent rent = new Rent();
-//                rent.setID(rs.getInt("id"));
-//                userIDs.add(rs.getInt("userid"));
-//                bookIDs.add(rs.getInt("bookid"));
-//                rent.setBorrowTime(rs.getString("borrowtime"));
-//                rent.setTotalDays(rs.getInt("totaldays"));
-//                rent.setStatus(rs.getInt("status"));
-//                rents.add(rent);
-//            }
-//
-//            for(int j = 0; j < rents.size(); j++){
-//                Rent r = rents.get(j);
-//
-//                String selectUser = "SELECT * FROM `user` WHERE `ID` = '"+userIDs.get(j)+"';";
-//                ResultSet rs2 = database.getStatement().executeQuery(selectUser);
-//                rs2.next();
-//                User u = new Client();
-//                u.setID(rs2.getInt("ID"));
-//                u.setFirstName(rs2.getString("firstname"));
-//                u.setLastName(rs2.getString("lastname"));
-//                u.setEmail(rs2.getString("email"));
-//                u.setPhoneNumber(rs2.getString("phonenumber"));
-//                u.setPassword(rs2.getString("password"));
-//                r.setUser(u);
-//
-//                ResultSet rs3 = database.getStatement()
-//                        .executeQuery("SELECT * FROM `book` WHERE `ID` = '"+bookIDs.get(j)+"';");
-//                rs3.next();
-//                Book b = new Book();
-//                b.setID(rs3.getInt("id"));
-//                b.setName(rs3.getString("name"));
-//                b.setAuthor(rs3.getString("author"));
-//                b.setPublisher(rs3.getString("publisher"));
-//                b.setCount(rs3.getInt("count"));
-//                r.setBook(b);
-//
-//                System.out.println("ID:\t\t"+ r.getID());
-//                System.out.println("Name:\t\t"+ r.getUser().getFirstName() + " " + r.getUser().getLastName());
-//                System.out.println("Email:\t\t"+ r.getUser().getEmail());
-//                System.out.println("Phone Number:\t\t"+ r.getUser().getPhoneNumber());
-//                System.out.println("Book ID:\t\t"+ r.getBook().getID());
-//                System.out.println("Book:\t\t"+ r.getBook().getName()+" "+r.getBook().getAuthor());
-//                System.out.println("Date time:\t\t"+ r.getBorrowTime());
-//                System.out.println("Total days:\t\t"+ r.getTotalDays());
-//                System.out.println("Status:\t\t"+ r.getStatusToString());
-//                System.out.println("------------------");
-//
-//            }
-//
-//        } catch (SQLException e) {
-//            throw new RuntimeException(e);
-//        }
-//    }
-//}
+package Controller;
+import Model.Database;
+import Model.JTable;
+import Model.Operation;
+import Model.Rent;
+import Model.User;
+import Model.Client;
+import Model.Book;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.sql.ResultSet;
+import java.util.*;
+import java.util.jar.JarEntry;
+
+import Model.JButton;
+import Model.JLabel;
+import Model.JTextField;
+
+public class ShowAllRents implements Operation {
+    @Override
+    public void operation(Database database, JFrame f, User user) {
+        JFrame frame = new JFrame();
+        frame.setSize(1200,750);
+        frame.setLocationRelativeTo(f);
+        frame.getContentPane().setBackground(new Color(255, 208, 208));
+        frame.setLayout(new BorderLayout());
+
+        JLabel title = new JLabel("List of Rents",45);
+        title.setBorder(BorderFactory.createEmptyBorder(20,0,0,0));
+        title.setFont(new Font("Noto Serif", Font.BOLD, 45));
+        title.setForeground(new Color(168, 118, 118));
+        frame.add(title,BorderLayout.NORTH);
+
+        String[] header = new String[] {
+                "ID","Name","Email","Phone Number","Book ID","Book",
+                "Date time","Total days","Status"
+        };
+
+        ArrayList<Rent> rents = new ArrayList<>();
+        ArrayList<Integer> bookIDs = new ArrayList<>();
+        ArrayList<Integer> userIDs = new ArrayList<>();
+
+        try{
+            String select = "SELECT * FROM `rent` ;";
+            ResultSet rs = database.getStatement().executeQuery(select);
+            while(rs.next()){
+                Rent rent = new Rent();
+                rent.setID(rs.getInt("id"));
+                userIDs.add(rs.getInt("userid"));
+                bookIDs.add(rs.getInt("bookid"));
+                rent.setBorrowTime(rs.getString("borrowtime"));
+                rent.setTotalDays(rs.getInt("totaldays"));
+                rent.setStatus(rs.getInt("status"));
+                rents.add(rent);
+            }
+
+            for(int j = 0; j < rents.size(); j++){
+                Rent r = rents.get(j);
+
+                String selectUser = "SELECT * FROM `user` WHERE `ID` = '"+userIDs.get(j)+"';";
+                ResultSet rs2 = database.getStatement().executeQuery(selectUser);
+                rs2.next();
+                User u = new Client();
+                u.setID(rs2.getInt("ID"));
+                u.setFirstName(rs2.getString("firstname"));
+                u.setLastName(rs2.getString("lastname"));
+                u.setEmail(rs2.getString("email"));
+                u.setPhoneNumber(rs2.getString("phonenumber"));
+                u.setPassword(rs2.getString("password"));
+                r.setUser(u);
+
+                ResultSet rs3 = database.getStatement()
+                        .executeQuery("SELECT * FROM `book` WHERE `ID` = '"+bookIDs.get(j)+"';");
+                rs3.next();
+                Book b = new Book();
+                b.setID(rs3.getInt("id"));
+                b.setName(rs3.getString("name"));
+                b.setAuthor(rs3.getString("author"));
+                b.setPublisher(rs3.getString("publisher"));
+                b.setCount(rs3.getInt("count"));
+                r.setBook(b);
+
+            }
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(frame,e.getMessage());
+        }
+
+        String[][] rentsData = new String[rents.size()][9];
+        for(int j=0;j<rents.size();j++){
+            Rent r = rents.get(j);
+            rentsData[j][0] = String.valueOf(r.getID());
+            rentsData[j][1] = r.getUser().getFirstName() + " " + r.getUser().getLastName();
+            rentsData[j][2] = r.getUser().getEmail();
+            rentsData[j][3] = r.getUser().getPhoneNumber();
+            rentsData[j][4] = String.valueOf(r.getBook().getID());
+            rentsData[j][5] = r.getBook().getName()+" "+r.getBook().getAuthor();
+            rentsData[j][6] = r.getBorrowTime();
+            rentsData[j][7] = String.valueOf(r.getTotalDays());
+            rentsData[j][8] = r.getStatusToString();
+        }
+        Color color2 = new Color(255, 208, 208);
+        Color color1 = new Color(168, 118, 118);
+
+        JScrollPane scrollPane = new JScrollPane(new JTable(rentsData, header, color1, color2));
+        scrollPane.setBackground(null);
+        scrollPane.setBorder(BorderFactory.createEmptyBorder(20,20,20,20));
+        frame.add(scrollPane,BorderLayout.CENTER);
+        frame.setVisible(true);
+    }
+}
