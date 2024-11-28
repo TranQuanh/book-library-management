@@ -13,6 +13,9 @@ import java.sql.ResultSet;
 import java.util.*;
 import java.util.jar.JarEntry;
 
+import Model.JButton;
+import Model.JLabel;
+import Model.JTextField;
 public class ReturnBook implements Operation {
     public void operation(Database database, JFrame f, User user) {
 
@@ -22,7 +25,7 @@ public class ReturnBook implements Operation {
         frame.getContentPane().setBackground(new Color(250, 206, 27));
         frame.setLayout(new BorderLayout());
 
-        JLabel title = new JLabel("Rent Car", 35);
+        JLabel title = new JLabel("Rent Book", 35);
         title.setBorder(BorderFactory.createEmptyBorder(20,0,0,0));
         frame.add(title, BorderLayout.NORTH);
 
@@ -35,7 +38,7 @@ public class ReturnBook implements Operation {
         String[] ids= new String[] {" "};
         ArrayList<Integer> idsArray = new ArrayList<>();
         try{
-            ResultSet rs1 = database.getStatement().executeQuery("SELECT `id` FROM `book` WHERE `user` = '"+user.getID()+"'");
+            ResultSet rs1 = database.getStatement().executeQuery("SELECT `id` FROM `rent` WHERE `userid` = '"+user.getID()+"'");
             while (rs1.next()) {
                 idsArray.add(rs1.getInt("ID"));
             }
@@ -56,7 +59,7 @@ public class ReturnBook implements Operation {
         panel.add(id);
 
 //      JButton showRents = new JButton("Show my Rents",22);
-        JButton showRents = new JButton("Show my Rents");
+        JButton showRents = new JButton("Show my Rents",22);
         showRents.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -66,7 +69,7 @@ public class ReturnBook implements Operation {
         panel.add(showRents);
 
 //        JButton confirm = new JButton("Confirm",22);
-        JButton confirm = new JButton("Confirm");
+        JButton confirm = new JButton("Confirm",22);
         confirm.addActionListener(new ActionListener() {
 
             @Override
