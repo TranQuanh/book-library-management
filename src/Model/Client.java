@@ -11,7 +11,7 @@ import java.util.Scanner;
 public class Client extends User{
     private Operation[] operations = new Operation[]{
             new ViewBook(),
-//            new RentBook(),
+            new RentBook(),
 //            new ReturnBook(),
             new ShowUserRents(-9999),
             new EditUserData(),

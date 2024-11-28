@@ -12,7 +12,7 @@ public class JComboBox extends javax.swing.JComboBox {
     @SuppressWarnings("unchecked")
     public JComboBox(String[] items, int fontSize) {
         super(items);
-        setFont(new Font("SansSerif", Font.BOLD, fontSize));
+        setFont(new Font("Verdana", Font.BOLD, fontSize));
         setBackground(Color.white);
         ((JLabel) getRenderer()).setHorizontalAlignment(SwingConstants.CENTER);
     }
