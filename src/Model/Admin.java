@@ -15,8 +15,8 @@ public class Admin extends User {
             new DeleteBook(),
             new AddNewAccount(1),
             new ShowAllRents(),
-//            new ShowSpecUserRents(),
-//            new EditUserData(),
+            new ShowSpecUserRents(),
+            new EditUserData(),
             new ChangePassword(),
 //            new Quit()
     };
