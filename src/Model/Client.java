@@ -12,7 +12,7 @@ public class Client extends User{
     private Operation[] operations = new Operation[]{
             new ViewBook(),
             new RentBook(),
-//            new ReturnBook(),
+            new ReturnBook(),
             new ShowUserRents(-9999),
             new EditUserData(),
 //            new ChangePassword(),
