@@ -20,7 +20,7 @@ public class ViewBook implements Operation {
     @Override
     public void operation(Database database, JFrame f, User user) {
 
-        JFrame frame = new JFrame();
+        JFrame frame = new JFrame("View Book");
         frame.setSize(1200,750);
         frame.setLocationRelativeTo(f);
         frame.getContentPane().setBackground(new Color(255, 208, 208));
