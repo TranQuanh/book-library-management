@@ -13,8 +13,8 @@ public class Client extends User{
             new ViewBook(),
 //            new RentBook(),
 //            new ReturnBook(),
-//            new ShowUserRents(-99999),
-              new EditUserData(),
+            new ShowUserRents(-9999),
+            new EditUserData(),
 //            new ChangePassword(),
 //            new Quit()
     };
