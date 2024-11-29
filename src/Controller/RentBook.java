@@ -91,8 +91,9 @@ public class RentBook implements Operation {
         JTextField days = new Model.JTextField(22);
         panel.add(days);
 
-        JButton showBooks = new JButton("Show All Books",22);
-        panel.add(showBooks);
+//        JButton showBooks = new JButton("",22);
+        panel.add(new JLabel("",22));
+//        panel.add(showBooks);
 
         JButton confirm = new JButton("Confirm",22);
         confirm.addActionListener(new ActionListener() {

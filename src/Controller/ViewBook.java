@@ -18,7 +18,7 @@ import java.util.Scanner;
 
 public class ViewBook implements Operation {
     @Override
-    public void operation(Database database, JFrame f, User user) {
+    public  void operation(Database database, JFrame f, User user) {
 
         JFrame frame = new JFrame("View Book");
         frame.setSize(1200,750);

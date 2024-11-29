@@ -83,15 +83,36 @@ public class AddNewBook implements Operation {
                 }
 
                 try {
-                    ResultSet rs = database.getStatement().executeQuery("SELECT COUNT(*) as count FROM `book`");
-                    rs.next();
-                    int ID = rs.getInt("count") + 1;
-                    String insert = "INSERT INTO `book`(`id`,`name`,`author`, " +
-                            " `publisher`,`count`) VALUES " +
-                            " ('"+ID+"', '"+name.getText()+"', '"+author.getText()+"', '"+publisher.getText()+"'," +
-                            "'"+num+"');";
-                    database.getStatement().executeUpdate(insert);
-                    JOptionPane.showMessageDialog(frame, "Book Added");
+
+                    String checkQuery = "SELECT id, count FROM `Book` WHERE name = '" + name.getText() +
+                            "' AND author = '" + author.getText() +
+                            "' AND publisher = '" + publisher.getText() + "'";
+                    ResultSet rs = database.getStatement().executeQuery(checkQuery);
+
+                    if (rs.next()) {
+
+                        int existingCount = rs.getInt("count");
+                        int newCount = existingCount + num;
+                        int existingId = rs.getInt("id");
+
+                        String updateQuery = "UPDATE `Book` SET count = " + newCount +
+                                " WHERE id = " + existingId;
+                        database.getStatement().executeUpdate(updateQuery);
+
+                        JOptionPane.showMessageDialog(frame, "Book Updated!");
+                    } else {
+
+                        ResultSet rs2 = database.getStatement().executeQuery("SELECT COUNT(*) as count FROM `book`");
+                        rs2.next();
+                        int ID = rs2.getInt("count") + 1;
+                        String insert = "INSERT INTO `book`(`id`,`name`,`author`, " +
+                                " `publisher`,`count`) VALUES " +
+                                " ('"+ID+"', '"+name.getText()+"', '"+author.getText()+"', '"+publisher.getText()+"'," +
+                                "'"+num+"');";
+                        database.getStatement().executeUpdate(insert);
+                        JOptionPane.showMessageDialog(frame, "Book Added");
+                    }
+
                     frame.dispose();
                 }
                 catch (SQLException ex) {
