@@ -16,7 +16,7 @@ public class Client extends User{
             new ShowUserRents(-9999),
             new EditUserData(),
             new ChangePassword(),
-//            new Quit()
+            new Quit()
     };
     private JButton[] btns = new JButton[]{
             new JButton("View Books", 22),
@@ -24,7 +24,8 @@ public class Client extends User{
             new JButton("Return Book",22),
             new JButton("Show My Rents", 22),
             new JButton("Edit My Data", 22),
-            new JButton("Change Password", 22)
+            new JButton("Change Password", 22),
+            new JButton("Quit", 22)
     };
     public Client() {
         super();

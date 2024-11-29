@@ -18,7 +18,7 @@ public class Admin extends User {
             new ShowSpecUserRents(),
             new EditUserData(),
             new ChangePassword(),
-//            new Quit()
+            new Quit()
     };
     private JButton[] btns = new JButton[]{
             new JButton("Add new Book",22),
@@ -29,7 +29,8 @@ public class Admin extends User {
             new JButton("Show Rents", 22),
             new JButton("Show User's Rents",22),
             new JButton("Edit my Data",22),
-            new JButton("Change Password", 22)
+            new JButton("Change Password", 22),
+            new JButton("Quit", 22)
     };
     public Admin() {
         super();
