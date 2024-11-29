@@ -15,7 +15,7 @@ public class Client extends User{
             new ReturnBook(),
             new ShowUserRents(-9999),
             new EditUserData(),
-//            new ChangePassword(),
+            new ChangePassword(),
 //            new Quit()
     };
     private JButton[] btns = new JButton[]{
