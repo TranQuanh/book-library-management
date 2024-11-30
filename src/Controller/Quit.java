@@ -10,7 +10,7 @@ import javax.swing.*;
 
 public class Quit implements Operation {
     @Override
-    public void operation(Database database, JFrame f, User user) {s
+    public void operation(Database database, JFrame f, User user) {
         f.dispose();
         Main.start();
     }
