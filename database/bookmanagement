@@ -17,10 +17,10 @@ create table book(
     count int
 );
 create table rent(
-	id int primary key,
+    id int primary key,
     userid int not null,
     bookid int not null,
-    borrowtime VARCHAR(250) noy null,
+    borrowtime VARCHAR(250) not null,
     totaldays int not null,
     status int not null
 );
