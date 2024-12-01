@@ -37,14 +37,24 @@ public class Admin extends User {
     }
     @Override
     public void showList(Database database, JFrame f) {
+        Color scheme1 = new Color(101, 123, 119);
+
         JFrame frame = new JFrame("Admin Panel");
-        frame.setSize(400,btns.length*80);
+        frame.setSize(1000,1200);
         frame.setLocationRelativeTo(f);
         frame.getContentPane().setBackground(new Color(250,206,27));
         frame.setLayout(new BorderLayout());
-        JLabel title = new JLabel("Welcome Admin:"+getFirstName(),30);
-        title.setBorder(BorderFactory.createEmptyBorder(15,0,0,0));
+        JLabel title = new JLabel("Welcome Admin:"+getFirstName(),"Noto Serif Regular",45,scheme1);
+        title.setBorder(BorderFactory.createEmptyBorder(50,50,50,50));
         frame.add(title, BorderLayout.NORTH);
+
+
+        JPanel layout = new JPanel();
+        layout.setSize(400,btns.length*90);
+        layout.setLayout(new BorderLayout());
+        layout.setBackground(Color.WHITE);
+        layout.add(title, BorderLayout.NORTH);
+
 
         JPanel panel = new JPanel(new GridLayout(btns.length,1,15,15));
         panel.setBackground(null);
@@ -60,7 +70,12 @@ public class Admin extends User {
                 }
             });
         }
-        frame.add(panel,BorderLayout.CENTER);
+
+        layout.add(panel, BorderLayout.CENTER);
+        layout.setBorder(BorderFactory.createEmptyBorder(0,50,50,50));
+
+        frame.add(layout,BorderLayout.CENTER);
+//        frame.add(panel,BorderLayout.CENTER);
         frame.setVisible(true);
 
     }

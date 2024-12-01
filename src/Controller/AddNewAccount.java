@@ -26,45 +26,50 @@ public class AddNewAccount implements Operation {
 
     @Override
     public void operation(Database database, JFrame f, User user){
+        Color scheme1 = new Color(255, 208, 208);
+        Color scheme2 = new Color(168, 118, 118);
+
         JFrame frame = new JFrame("Create New Account");
-        frame.setSize(600,600);
+        frame.setSize(1000,800);
         frame.setLocationRelativeTo(f);
-        frame.getContentPane().setBackground(new Color(250, 206, 27));
+        frame.getContentPane().setBackground(scheme1);
         frame.setLayout(new BorderLayout());
 
-        JLabel title = new JLabel("Welcome to Book Management System",35);
-        title.setBorder(BorderFactory.createEmptyBorder(20,0,0,0));
+        JLabel title = new JLabel("Welcome to Book Management System","Noto Serif Regular",45,scheme2);
+        title.setBorder(BorderFactory.createEmptyBorder(50,50,50,50));
         frame.add(title, BorderLayout.NORTH);
 
         JPanel panel = new JPanel(new GridLayout(7,2,15,15));
         panel.setBackground(null);
-        panel.setBorder(BorderFactory.createEmptyBorder(20,20,20,20));
+        panel.setBorder(BorderFactory.createEmptyBorder(20,50,50,50));
 
-        panel.add(new JLabel("First Name:",22));
-        JTextField firstname = new JTextField(22);
+        panel.add(new JLabel("First Name:",22,scheme2));
+        JTextField firstname = new JTextField(22,Color.WHITE,scheme2);
         panel.add(firstname);
 
-        panel.add(new JLabel("Last Name:",22));
-        JTextField lastname = new JTextField(22);
+        panel.add(new JLabel("Last Name:",22,scheme2));
+        JTextField lastname = new JTextField(22,Color.WHITE,scheme2);
         panel.add(lastname);
 
-        panel.add(new JLabel("Email:",22));
-        JTextField email = new JTextField(22);
+        panel.add(new JLabel("Email:",22,scheme2));
+        JTextField email = new JTextField(22,Color.WHITE,scheme2);
         panel.add(email);
 
-        panel.add(new JLabel("Phone Number:",22));
-        JTextField phone = new JTextField(22);
+        panel.add(new JLabel("Phone Number:",22,scheme2));
+        JTextField phone = new JTextField(22,Color.WHITE,scheme2);
         panel.add(phone);
 
-        panel.add(new JLabel("Password:",22));
+        panel.add(new JLabel("Password:",22,scheme2));
         JPasswordField password = new JPasswordField(22);
+        password.setForeground(scheme2);
         panel.add(password);
 
-        panel.add(new JLabel("Confirm Password:",22));
+        panel.add(new JLabel("Confirm Password:",22,scheme2));
         JPasswordField confirmPassword = new JPasswordField(22);
+        confirmPassword.setForeground(scheme2);
         panel.add(confirmPassword);
 
-        JButton login = new JButton("Login",22);
+        JButton login = new JButton("Login",22,new Color(233, 155, 155),scheme2);
         login.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -74,7 +79,7 @@ public class AddNewAccount implements Operation {
         });
         panel.add(login);
 
-        JButton createAcc = new JButton("Create Account",22);
+        JButton createAcc = new JButton("Create Account",22,new Color(233, 155, 155),scheme2);
         createAcc.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

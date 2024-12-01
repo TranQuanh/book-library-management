@@ -22,16 +22,18 @@ import Model.JTextField;
 public class ShowAllRents implements Operation {
     @Override
     public void operation(Database database, JFrame f, User user) {
+
+        Color scheme1 = new Color(255, 208, 208);
+        Color scheme2 = new Color(168, 118, 118);
+
         JFrame frame = new JFrame();
-        frame.setSize(1200,750);
+        frame.setSize(1500,750);
         frame.setLocationRelativeTo(f);
-        frame.getContentPane().setBackground(new Color(255, 208, 208));
+        frame.getContentPane().setBackground(scheme1);
         frame.setLayout(new BorderLayout());
 
-        JLabel title = new JLabel("List of Rents",45);
-        title.setBorder(BorderFactory.createEmptyBorder(20,0,0,0));
-        title.setFont(new Font("Noto Serif", Font.BOLD, 45));
-        title.setForeground(new Color(168, 118, 118));
+        JLabel title = new JLabel("List of Rents","Noto Serif Regular",45,scheme2);
+        title.setBorder(BorderFactory.createEmptyBorder(50,50,50,50));
         frame.add(title,BorderLayout.NORTH);
 
         String[] header = new String[] {
@@ -102,11 +104,9 @@ public class ShowAllRents implements Operation {
             rentsData[j][7] = String.valueOf(r.getTotalDays());
             rentsData[j][8] = r.getStatusToString();
         }
-        Color color2 = new Color(255, 208, 208);
-        Color color1 = new Color(168, 118, 118);
 
-        JScrollPane scrollPane = new JScrollPane(new JTable(rentsData, header, color1, color2));
-        scrollPane.setBackground(null);
+        JScrollPane scrollPane = new JScrollPane(new JTable(rentsData, header, scheme2, scheme1));
+        scrollPane.setBackground(scheme1);
         scrollPane.setBorder(BorderFactory.createEmptyBorder(20,20,20,20));
         frame.add(scrollPane,BorderLayout.CENTER);
         frame.setVisible(true);
