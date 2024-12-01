@@ -20,7 +20,7 @@ create table rent(
 	id int primary key,
     userid int not null,
     bookid int not null,
-    borrowtime VARCHAR(250) noy null,
+    borrowtime VARCHAR(250) not null,
     totaldays int not null,
     status int not null
 );
@@ -34,11 +34,41 @@ BEGIN
         UPDATE book
         SET count = count - 1
         WHERE id = NEW.bookid;
-    ELSEIF NEW.status = 1 THEN
+    END IF;
+END$$
+
+CREATE TRIGGER rent_after_update
+AFTER UPDATE ON rent
+FOR EACH ROW
+BEGIN
+    IF OLD.status = 0 AND NEW.status = 1 THEN
         UPDATE book
         SET count = count + 1
         WHERE id = NEW.bookid;
+
     END IF;
 END$$
 
 DELIMITER ;
+
+INSERT INTO book(ID, Name, Author, Publisher, Count) VALUES
+(1, 'The Great Gatsby', 'F. Scott Fitzgerald', 'Scribner', 10),
+(2, 'Moby Dick', 'Herman Melville', 'Harper & Brothers', 10),
+(3, 'To Kill a Mockingbird', 'Harper Lee', 'J.B. Lippincott & Co.', 10),
+(4, '1984', 'George Orwell', 'Secker & Warburg', 10),
+(5, 'Pride and Prejudice', 'Jane Austen', 'T. Egerton', 10),
+(6, 'The Catcher in the Rye', 'J.D. Salinger', 'Little, Brown and Co.', 10),
+(7, 'The Hobbit', 'J.R.R. Tolkien', 'George Allen & Unwin', 10),
+(8, 'Brave New World', 'Aldous Huxley', 'Chatto & Windus', 10),
+(9, 'The Lord of the Rings', 'J.R.R. Tolkien', 'George Allen & Unwin', 10),
+(10, 'Crime and Punishment', 'Fyodor Dostoevsky', 'The Russian Messenger', 10),
+(11, 'The Picture of Dorian Gray', 'Oscar Wilde', 'Lippincott’s Monthly Magazine', 10),
+(12, 'War and Peace', 'Leo Tolstoy', 'The Russian Messenger', 10),
+(13, 'Ulysses', 'James Joyce', 'Sylvia Beach', 10),
+(14, 'Catch-22', 'Joseph Heller', 'Simon & Schuster', 10),
+(15, 'Fahrenheit 451', 'Ray Bradbury', 'Ballantine Books', 10),
+(16, 'Wuthering Heights', 'Emily Brontë', 'Thomas Cautley Newby', 10),
+(17, 'Frankenstein', 'Mary Shelley', 'Lackington, Hughes, Harding, Mavor & Jones', 10),
+(18, 'Dracula', 'Bram Stoker', 'Archibald Constable and Company', 10),
+(19, 'The Odyssey', 'Homer', 'Various Publishers', 10),
+(20, 'The Divine Comedy', 'Dante Alighieri', 'Various Publishers', 10);

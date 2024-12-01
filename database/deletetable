@@ -2,3 +2,4 @@ USE bookmanagement;
 DROP TABLE user;
 DROP TABLE book;
 DROP TABLE rent;
+DROP TRIGGER IF EXISTS rent_after_update;
