@@ -25,41 +25,45 @@ import Model.JPasswordField;
 public class EditUserData implements Operation {
     @Override
     public void operation(Database database, JFrame f, User user) {
+
+        Color scheme1 = new Color(255, 208, 208);
+        Color scheme2 = new Color(168, 118, 118);
+
         JFrame frame = new JFrame("Edit Data");
-        frame.setSize(600,450);
+        frame.setSize(800,650);
         frame.setLocationRelativeTo(f);
-        frame.getContentPane().setBackground(new Color(27, 150, 250));
+        frame.getContentPane().setBackground(scheme1);
         frame.setLayout(new BorderLayout());
 
-        JLabel title = new JLabel("Edit Data",35);
-        title.setBorder(BorderFactory.createEmptyBorder(20,0,0,0));
+        JLabel title = new JLabel("Edit Data","Noto Serif Regular",45,scheme2);
+        title.setBorder(BorderFactory.createEmptyBorder(50,50,50,50));
         frame.add(title, BorderLayout.NORTH);
 
         JPanel panel = new JPanel(new GridLayout(5,2,15,15));
         panel.setBackground(null);
-        panel.setBorder(BorderFactory.createEmptyBorder(20,20,20,20));
+        panel.setBorder(BorderFactory.createEmptyBorder(20,50,50,50));
 
-        panel.add(new JLabel("First Name:",22));
-        JTextField firstName = new JTextField(22);
+        panel.add(new JLabel("First Name:",22,scheme2));
+        JTextField firstName = new JTextField(22,Color.WHITE,scheme2);
         firstName.setText(user.getFirstName());
         panel.add(firstName);
 
-        panel.add(new JLabel("Last Name:",22));
-        JTextField lastName = new JTextField(22);
+        panel.add(new JLabel("Last Name:",22,scheme2));
+        JTextField lastName = new JTextField(22,Color.WHITE,scheme2);
         lastName.setText(user.getLastName());
         panel.add(lastName);
 
-        panel.add(new JLabel("Email:",22));
-        JTextField email = new JTextField(22);
+        panel.add(new JLabel("Email:",22,scheme2));
+        JTextField email = new JTextField(22,Color.WHITE,scheme2);
         email.setText(user.getEmail());
         panel.add(email);
 
-        panel.add(new JLabel("Phone Number:",22));
-        JTextField phoneNumber = new JTextField(22);
+        panel.add(new JLabel("Phone Number:",22,scheme2));
+        JTextField phoneNumber = new JTextField(22,Color.WHITE,scheme2);
         phoneNumber.setText(user.getPhoneNumber());
         panel.add(phoneNumber);
 
-        JButton cancel = new JButton("Cancel",22);
+        JButton cancel = new JButton("Cancel",22,new Color(233, 155, 155),scheme2);
         cancel.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -68,7 +72,7 @@ public class EditUserData implements Operation {
         });
         panel.add(cancel);
 
-        JButton confirm = new JButton("Confirm",22);
+        JButton confirm = new JButton("Confirm",22,new Color(233, 155, 155),scheme2);
         confirm.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ev) {

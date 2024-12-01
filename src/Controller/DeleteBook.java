@@ -25,22 +25,24 @@ public class DeleteBook implements Operation {
     public void operation(Database database, JFrame f, User user) {
 
         this.database = database;
+        Color scheme1 = new Color(255, 208, 208);
+        Color scheme2 = new Color(168, 118, 118);
 
         frame = new JFrame("Delete Book");
-        frame.setSize(600,600);
+        frame.setSize(800,800);
         frame.setLocationRelativeTo(f);
-        frame.getContentPane().setBackground(new Color(27, 150, 250));
+        frame.getContentPane().setBackground(scheme1);
         frame.setLayout(new BorderLayout());
 
-        Model.JLabel title = new JLabel("Delete Book",35);
-        title.setBorder(BorderFactory.createEmptyBorder(20,0,0,0));
+        Model.JLabel title = new JLabel("Delete Book","Noto Serif Regular",45,scheme2);
+        title.setBorder(BorderFactory.createEmptyBorder(50,50,50,50));
         frame.add(title, BorderLayout.NORTH);
 
         JPanel panel = new JPanel(new GridLayout(6,2,15,15));
         panel.setBackground(null);
-        panel.setBorder(BorderFactory.createEmptyBorder(20,20,20,20));
+        panel.setBorder(BorderFactory.createEmptyBorder(20,50,50,50));
 
-        panel.add(new JLabel("ID: ", 22));
+        panel.add(new JLabel("ID: ", 22,scheme2));
         String[] ids= new String[] {" "};
         ArrayList<Integer> idsArray = new ArrayList<>();
         try{
@@ -49,7 +51,6 @@ public class DeleteBook implements Operation {
                 idsArray.add(rs1.getInt("ID"));
             }
         } catch (Exception e0){
-            System.out.println("0202");
             JOptionPane.showMessageDialog(frame, e0.getMessage());
             frame.dispose();
         }
@@ -60,7 +61,7 @@ public class DeleteBook implements Operation {
             ids[i] = String.valueOf(idsArray.get(i-1));
         }
 
-        Model.JComboBox id = new Model.JComboBox(ids, 22);
+        Model.JComboBox id = new Model.JComboBox(ids, 22,scheme2);
         id.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -69,27 +70,27 @@ public class DeleteBook implements Operation {
         });
         panel.add(id);
 
-        panel.add(new JLabel("Name:",22));
-        name = new Model.JTextField(22);
+        panel.add(new JLabel("Name:",22,scheme2));
+        name = new Model.JTextField(22,Color.WHITE,scheme2);
         name.setEditable(false);
         panel.add(name);
 
-        panel.add(new JLabel("Author:",22));
-        author = new Model.JTextField(22);
+        panel.add(new JLabel("Author:",22,scheme2));
+        author = new Model.JTextField(22,Color.WHITE,scheme2);
         author.setEditable(false);
         panel.add(author);
 
-        panel.add(new JLabel("Publisher:",22));
-        publisher = new Model.JTextField(22);
+        panel.add(new JLabel("Publisher:",22,scheme2));
+        publisher = new Model.JTextField(22,Color.WHITE,scheme2);
         publisher.setEditable(false);
         panel.add(publisher);
 
-        panel.add(new JLabel("Number of books:",22));
-        number = new Model.JTextField(22);
+        panel.add(new JLabel("Number of books:",22,scheme2));
+        number = new Model.JTextField(22,Color.WHITE,scheme2);
         number.setEditable(false);
         panel.add(number);
 
-        Model.JButton cancel = new JButton("Cancel",22);
+        Model.JButton cancel = new JButton("Cancel",22,new Color(233, 155, 155),scheme2);
         cancel.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -98,7 +99,7 @@ public class DeleteBook implements Operation {
         });
         panel.add(cancel);
 
-        JButton delete = new JButton("Delete",22);
+        JButton delete = new JButton("Delete",22,new Color(233, 155, 155),scheme2);
         delete.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -151,7 +152,6 @@ public class DeleteBook implements Operation {
                 publisher.setText(rs1.getString("publisher"));
                 number.setText(String.valueOf(rs1.getInt("count")));
             } catch(Exception e1) {
-                System.out.println("345");
                 JOptionPane.showMessageDialog(frame, e1.getMessage());
                 frame.dispose();
             }

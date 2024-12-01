@@ -21,39 +21,37 @@ import java.util.Scanner;
 public class ViewBook implements Operation {
     @Override
     public  void operation(Database database, JFrame f, User user) {
+        Color scheme1 = new Color(255, 208, 208);
+        Color scheme2 = new Color(168, 118, 118);
 
         JFrame frame = new JFrame("View Book");
-        frame.setSize(1200,750);
+        frame.setSize(1200,1000);
         frame.setLocationRelativeTo(f);
-        frame.getContentPane().setBackground(new Color(255, 208, 208));
+        frame.getContentPane().setBackground(scheme1);
         frame.setLayout(new BorderLayout());
 
-        JLabel title = new JLabel("List of Books",45);
-        title.setBorder(BorderFactory.createEmptyBorder(20,0,0,0));
-        title.setFont(new Font("Noto Serif", Font.BOLD, 45));
-        title.setForeground(new Color(168, 118, 118));
+        JLabel title = new JLabel("List of Books","Noto Serif Regular",45,scheme2);
+        title.setBorder(BorderFactory.createEmptyBorder(50,50,50,50));
         frame.add(title,BorderLayout.NORTH);
 
         JPanel filterPanel = new JPanel(new GridLayout(1, 6, 10, 10));
-        filterPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        filterPanel.setBackground(new Color(255, 208, 208));
+        filterPanel.setBorder(BorderFactory.createEmptyBorder(20, 50, 50, 50));
+        filterPanel.setBackground(scheme1);
 
-        JTextField filterName = new JTextField();
+        JTextField filterName = new Model.JTextField(22,Color.WHITE,scheme2);;
         filterName.setToolTipText("Filter by Book Name");
-        JTextField filterAuthor = new JTextField();
+        JTextField filterAuthor = new Model.JTextField(22,Color.WHITE,scheme2);;
         filterAuthor.setToolTipText("Filter by Author");
-        JTextField filterPublisher = new JTextField();
+        JTextField filterPublisher = new Model.JTextField(22,Color.WHITE,scheme2);;
         filterPublisher.setToolTipText("Filter by Publisher");
 
-        JButton filterButton = new JButton("Filter");
-        filterButton.setBackground(new Color(168, 118, 118));
-        filterButton.setForeground(Color.WHITE);
+        Model.JButton filterButton = new Model.JButton("Filter",22,new Color(233, 155, 155),scheme2);
 
-        filterPanel.add(new JLabel("Name:",22));
+        filterPanel.add(new JLabel("Name:",22,scheme2));
         filterPanel.add(filterName);
-        filterPanel.add(new JLabel("Author:",22));
+        filterPanel.add(new JLabel("Author:",22,scheme2));
         filterPanel.add(filterAuthor);
-        filterPanel.add(new JLabel("Publisher:",22));
+        filterPanel.add(new JLabel("Publisher:",22,scheme2));
         filterPanel.add(filterPublisher);
         frame.add(filterPanel, BorderLayout.SOUTH);
 
@@ -63,6 +61,7 @@ public class ViewBook implements Operation {
                 "ID", "Title", "Author", "Publisher", "Count"
         };
         JScrollPane scrollPane = new JScrollPane();
+        scrollPane.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
         frame.add(scrollPane, BorderLayout.CENTER);
         filterButton.addActionListener(new ActionListener() {
             @Override
@@ -110,11 +109,8 @@ public class ViewBook implements Operation {
 //            }
                 }
 
-                Color color2 = new Color(255, 208, 208);
-                Color color1 = new Color(168, 118, 118);
-
                 // Tạo JTable mới và cập nhật nội dung trong scrollPane
-                JTable table = new JTable(booksData, header,color1,color2);
+                JTable table = new JTable(booksData, header,scheme2,scheme1);
                 scrollPane.setViewportView(table); // Cập nhật bảng trong scrollPane
                 scrollPane.revalidate(); // Làm mới giao diện
                 scrollPane.repaint(); // Vẽ lại giao diện
@@ -151,12 +147,9 @@ public class ViewBook implements Operation {
 //            }
         }
 
-        Color color2 = new Color(255, 208, 208);
-        Color color1 = new Color(168, 118, 118);
-
-        JTable table = new JTable(booksData, header,color1,color2);
+        JTable table = new JTable(booksData, header,scheme2,scheme1);
         scrollPane.setViewportView(table);
-        scrollPane.setBackground(null);
+        scrollPane.setBackground(scheme1);
         scrollPane.setBorder(BorderFactory.createEmptyBorder(20,20,20,20));
 
 

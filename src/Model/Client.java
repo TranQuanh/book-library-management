@@ -3,6 +3,7 @@ package Model;
 import Controller.*;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -32,13 +33,19 @@ public class Client extends User{
     }
     public void showList(Database database, JFrame f) {
         JFrame frame = new JFrame("Client Panel");
-        frame.setSize(400,btns.length*90);
+        frame.setSize(1000,1000);
         frame.setLocationRelativeTo(f);
-        frame.getContentPane().setBackground(new Color(250,206,27));
         frame.setLayout(new BorderLayout());
-        JLabel title = new JLabel("Welcome User: "+getFirstName(),30);
-        title.setBorder(BorderFactory.createEmptyBorder(15,0,0,0));
-        frame.add(title, BorderLayout.NORTH);
+        JLabel title = new JLabel("Welcome User: "+getFirstName(),40);
+        title.setBorder(BorderFactory.createEmptyBorder(50,50,50,50));
+        title.setFont(new Font("Noto Serif Regular", Font.BOLD, 40));
+        title.setForeground(new Color(101, 123, 119));
+
+        JPanel layout = new JPanel();
+        layout.setSize(400,btns.length*90);
+        layout.setLayout(new BorderLayout());
+        layout.setBackground(Color.WHITE);
+        layout.add(title, BorderLayout.NORTH);
 
         JPanel panel = new JPanel(new GridLayout(btns.length,1,15,15));
         panel.setBackground(null);
@@ -50,11 +57,13 @@ public class Client extends User{
             button.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     operations[j].operation(database,frame,Client.this);
-
                 }
             });
         }
-        frame.add(panel,BorderLayout.CENTER);
+        layout.add(panel, BorderLayout.CENTER);
+        layout.setBorder(BorderFactory.createEmptyBorder(0,50,50,50));
+
+        frame.add(layout,BorderLayout.CENTER);
         frame.setVisible(true);
 
     }

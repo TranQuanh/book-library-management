@@ -16,26 +16,30 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ShowSpecUserRents implements Operation {
+
+    Color scheme1 = new Color(255, 208, 208);
+    Color scheme2 = new Color(168, 118, 118);
+
     @Override
     public void operation(Database database, JFrame f, User user) {
 
+
+
         JFrame frame = new JFrame("Show User's Rents");
-        frame.setSize(600,260);
+        frame.setSize(800,400);
         frame.setLocationRelativeTo(f);
-        frame.getContentPane().setBackground(new Color(255, 208, 208));
+        frame.getContentPane().setBackground(scheme1);
         frame.setLayout(new BorderLayout());
 
-        JLabel title = new JLabel("List of Rents",45);
-        title.setBorder(BorderFactory.createEmptyBorder(20,0,0,0));
-        title.setFont(new Font("Noto Serif", Font.BOLD, 45));
-        title.setForeground(new Color(168, 118, 118));
+        JLabel title = new JLabel("List of Rents","Noto Serif Regular",45,scheme2);
+        title.setBorder(BorderFactory.createEmptyBorder(50,50,50,50));
         frame.add(title,BorderLayout.NORTH);
 
         JPanel panel = new JPanel(new GridLayout(2,2,15,15));
         panel.setBackground(null);
         panel.setBorder(BorderFactory.createEmptyBorder(20,20,20,20));
 
-        panel.add(new JLabel("User ID:", 22));
+        panel.add(new JLabel("User ID:", 22,scheme2));
 
         ArrayList<Integer> ids = new ArrayList<>();
         try{
@@ -55,10 +59,10 @@ public class ShowSpecUserRents implements Operation {
         for(int i=0;i<ids.size();i++){
             idsArray[i+1] = String.valueOf(ids.get(i));
         }
-        JComboBox id = new JComboBox(idsArray,22);
+        JComboBox id = new JComboBox(idsArray,22,scheme2);
         panel.add(id);
 
-        JButton showUsers = new JButton("Show All Users", 22);
+        JButton showUsers = new JButton("Show All Users", 22,new Color(233, 155, 155),scheme2);
         showUsers.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -67,7 +71,7 @@ public class ShowSpecUserRents implements Operation {
         });
         panel.add(showUsers);
 
-        JButton confirm = new JButton ("Confirm", 22);
+        JButton confirm = new JButton ("Confirm", 22,new Color(233, 155, 155),scheme2);
         confirm.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -84,22 +88,17 @@ public class ShowSpecUserRents implements Operation {
         frame.setVisible(true);
         frame.requestFocus();
 
-
-
     }
     private void showUsers(Database database,JFrame frame){
         JFrame frame2 = new JFrame("Client list");
         frame2.setSize(1000,600);
         frame2.setLocationRelativeTo(frame);
-        frame2.getContentPane().setBackground(new Color(255, 208, 208));
+        frame2.getContentPane().setBackground(scheme1);
         frame2.setLayout(new BorderLayout());
 
-        JLabel title = new JLabel("Clients",45);
-        title.setBorder(BorderFactory.createEmptyBorder(20,0,0,0));
-        title.setFont(new Font("Noto Serif", Font.BOLD, 45));
-        title.setForeground(new Color(168, 118, 118));
+        JLabel title = new JLabel("Clients","Noto Serif Regular",45,scheme2);
+        title.setBorder(BorderFactory.createEmptyBorder(50,50,50,50));
         frame2.add(title,BorderLayout.NORTH);
-
         String[] header = new String[]{"ID","First Name","Last Name","Email","Tel"};
 
         ArrayList<User> users = new ArrayList<>();
@@ -131,10 +130,8 @@ public class ShowSpecUserRents implements Operation {
             usersData[i][3] = users.get(i).getEmail();
             usersData[i][4] = users.get(i).getPhoneNumber();
         }
-        Color color2 = new Color(255, 208, 208);
-        Color color1 = new Color(168, 118, 118);
 
-        JScrollPane panel = new JScrollPane(new JScrollPane(new JTable(usersData,header,color1,color2)));
+        JScrollPane panel = new JScrollPane(new JScrollPane(new JTable(usersData,header,scheme2,scheme1)));
         panel.setBackground(null);
         panel.getViewport().setBackground(null);
         panel.setBorder(BorderFactory.createEmptyBorder(20,20,20,20));

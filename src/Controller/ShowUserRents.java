@@ -21,16 +21,17 @@ public class ShowUserRents implements Operation {
     public void operation(Database database, JFrame f, User user) {
         if (userId==-9999) userId = user.getID();
 
+        Color scheme1 = new Color(255, 208, 208);
+        Color scheme2 = new Color(168, 118, 118);
+
         JFrame frame = new JFrame("Show User Rents");
-        frame.setSize(1200,600);
+        frame.setSize(1200,700);
         frame.setLocationRelativeTo(f);
-        frame.getContentPane().setBackground(new Color(255, 208, 208));
+        frame.getContentPane().setBackground(scheme1);
         frame.setLayout(new BorderLayout());
 
-        JLabel title = new JLabel("Rents",35);
-        title.setBorder(BorderFactory.createEmptyBorder(20,0,0,0));
-        title.setFont(new Font("Noto Serif", Font.BOLD, 45));
-        title.setForeground(new Color(168, 118, 118));
+        JLabel title = new JLabel("Rents","Noto Serif Regular",45,scheme2);
+        title.setBorder(BorderFactory.createEmptyBorder(20,50,50,50));
         frame.add(title,BorderLayout.NORTH);
 
         String[] header = new String[]{
@@ -79,7 +80,6 @@ public class ShowUserRents implements Operation {
             }
 
         } catch (SQLException e) {
-            System.out.println("123");
             JOptionPane.showMessageDialog(frame,e.getMessage());
             frame.dispose();
         }
@@ -97,9 +97,7 @@ public class ShowUserRents implements Operation {
             rentsData[j][7] = String.valueOf(r.getTotalDays());
             rentsData[j][8] = r.getStatusToString();
         }
-        Color color2 = new Color(255, 208, 208);
-        Color color1 = new Color(168, 118, 118);
-        JScrollPane scrollPane = new JScrollPane(new JTable(rentsData, header, color1, color2));
+        JScrollPane scrollPane = new JScrollPane(new JTable(rentsData, header, scheme2, scheme1));
         scrollPane.setBackground(null);
         scrollPane.setBorder(BorderFactory.createEmptyBorder(20,20,20,20));
         frame.add(scrollPane,BorderLayout.CENTER);

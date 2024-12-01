@@ -1,8 +1,11 @@
 package Controller;
+
+import Model.*;
 import Model.Database;
 import Model.Operation;
 import Model.Rent;
 import Model.User;
+
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,22 +21,25 @@ import Model.JLabel;
 import Model.JTextField;
 public class ReturnBook implements Operation {
     public void operation(Database database, JFrame f, User user) {
+        Color scheme1 = new Color(255, 208, 208);
+        Color scheme2 = new Color(168, 118, 118);
 
         JFrame frame = new JFrame("Return Book");
-        frame.setSize(600,260);
+        frame.setSize(600,400);
         frame.setLocationRelativeTo(f);
-        frame.getContentPane().setBackground(new Color(250, 206, 27));
+        frame.getContentPane().setBackground(scheme1);
         frame.setLayout(new BorderLayout());
 
-        JLabel title = new JLabel("Rent Book", 35);
-        title.setBorder(BorderFactory.createEmptyBorder(20,0,0,0));
+        JLabel title = new JLabel("Return Book","Noto Serif Regular",45);
+        title.setForeground(scheme2);
+        title.setBorder(BorderFactory.createEmptyBorder(50,50,50,50));
         frame.add(title, BorderLayout.NORTH);
 
         JPanel panel = new JPanel(new GridLayout(2,2,15,15));
         panel.setBackground(null);
-        panel.setBorder(BorderFactory.createEmptyBorder(20,20,20,20));
+        panel.setBorder(BorderFactory.createEmptyBorder(20,50,20,50));
 
-        panel.add(new JLabel("Rent ID: ",22));
+        panel.add(new JLabel("Rent ID: ","Inter 24pt Regular", 22,scheme2));
 
         String[] ids= new String[] {" "};
         ArrayList<Integer> idsArray = new ArrayList<>();
@@ -54,12 +60,10 @@ public class ReturnBook implements Operation {
             ids[i] = String.valueOf(idsArray.get(i-1));
         }
 
-//        JComboBox id = new JComboBox(ids,22);
-        JComboBox id = new JComboBox(ids);
+        Model.JComboBox id = new Model.JComboBox(ids,22,scheme2);
         panel.add(id);
 
-//      JButton showRents = new JButton("Show my Rents",22);
-        JButton showRents = new JButton("Show my Rents",22);
+        JButton showRents = new JButton("Show my Rents",22,new Color(233, 155, 155),scheme2);
         showRents.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -69,7 +73,7 @@ public class ReturnBook implements Operation {
         panel.add(showRents);
 
 //        JButton confirm = new JButton("Confirm",22);
-        JButton confirm = new JButton("Confirm",22);
+        JButton confirm = new JButton("Confirm",22,new Color(233, 155, 155),scheme2);
         confirm.addActionListener(new ActionListener() {
 
             @Override

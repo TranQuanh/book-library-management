@@ -18,37 +18,40 @@ import javax.swing.*;
 public class AddNewBook implements Operation {
     @Override
     public void operation(Database database, JFrame f, User user){
+        Color scheme1 = new Color(255, 208, 208);
+        Color scheme2 = new Color(168, 118, 118);
+
         JFrame frame = new JFrame("Add New Book");
-        frame.setSize(600,525);
+        frame.setSize(700,650);
         frame.setLocationRelativeTo(f);
-        frame.getContentPane().setBackground(new Color(27, 150, 250));
+        frame.getContentPane().setBackground(scheme1);
         frame.setLayout(new BorderLayout());
 
-        Model.JLabel title = new JLabel("Add New Book",35);
-        title.setBorder(BorderFactory.createEmptyBorder(20,0,0,0));
+        Model.JLabel title = new JLabel("Add New Book","Noto Serif Regular",45,scheme2);
+        title.setBorder(BorderFactory.createEmptyBorder(50,50,50,50));
         frame.add(title, BorderLayout.NORTH);
 
-        JPanel panel = new JPanel(new GridLayout(6,2,15,15));
+        JPanel panel = new JPanel(new GridLayout(5,2,15,15));
         panel.setBackground(null);
-        panel.setBorder(BorderFactory.createEmptyBorder(20,20,20,20));
+        panel.setBorder(BorderFactory.createEmptyBorder(20,50,50,50));
 
-        panel.add(new JLabel("Name:",22));
+        panel.add(new JLabel("Name:",22,scheme2));
         JTextField name = new JTextField(22);
         panel.add(name);
 
-        panel.add(new JLabel("Author:",22));
+        panel.add(new JLabel("Author:",22,scheme2));
         JTextField author = new JTextField(22);
         panel.add(author);
 
-        panel.add(new JLabel("Publisher:",22));
+        panel.add(new JLabel("Publisher:",22,scheme2));
         JTextField publisher = new JTextField(22);
         panel.add(publisher);
 
-        panel.add(new JLabel("Number of books:",22));
+        panel.add(new JLabel("Number of books:",22,scheme2));
         JTextField number = new JTextField(22);
         panel.add(number);
 
-        JButton cancel = new JButton("Cancel",22);
+        JButton cancel = new JButton("Cancel",22,new Color(233, 155, 155),scheme2);
         cancel.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -58,7 +61,7 @@ public class AddNewBook implements Operation {
         });
         panel.add(cancel);
 
-        JButton save = new JButton("Save",22);
+        JButton save = new JButton("Save",22,new Color(233, 155, 155),scheme2);
         save.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
