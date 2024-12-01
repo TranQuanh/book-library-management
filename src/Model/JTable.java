@@ -15,7 +15,7 @@ public class JTable extends javax.swing.JTable {
     public JTable(String[][] data, String[] header, Color color1, Color color2) {
         super(data, header);
         setRowHeight(40);
-        setBackground(null);
+        setBackground(color1);
 
         DefaultTableModel tableModel = new DefaultTableModel(data, header) {
             @Override
@@ -31,7 +31,7 @@ public class JTable extends javax.swing.JTable {
                                                            boolean hasFocus, int row, int column) {
                 super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
                 setHorizontalAlignment(JLabel.CENTER);
-                setFont(new Font("Noto Serif", Font.BOLD, 20));
+                setFont(new Font("Noto Serif Regular", Font.BOLD, 20));
                 setForeground(color1);
                 if (hasFocus) setBorder(null);
                 if (row%2==0) {
@@ -53,7 +53,7 @@ public class JTable extends javax.swing.JTable {
                                                            boolean hasFocus, int row, int column) {
                 super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
                 setHorizontalAlignment(JLabel.CENTER);
-                setFont(new Font("Noto Serif", Font.BOLD, 20));
+                setFont(new Font("Noto Serif Regular", Font.BOLD, 20));
                 setBackground(color1);
                 setForeground(Color.white);
                 setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
