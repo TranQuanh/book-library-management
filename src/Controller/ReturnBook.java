@@ -44,7 +44,7 @@ public class ReturnBook implements Operation {
         String[] ids= new String[] {" "};
         ArrayList<Integer> idsArray = new ArrayList<>();
         try{
-            ResultSet rs1 = database.getStatement().executeQuery("SELECT `id` FROM `rent` WHERE `userid` = '"+user.getID()+"'");
+            ResultSet rs1 = database.getStatement().executeQuery("SELECT `id` FROM `rent` WHERE `userid` = '"+user.getID()+"' AND status = 0" );
             while (rs1.next()) {
                 idsArray.add(rs1.getInt("ID"));
             }
