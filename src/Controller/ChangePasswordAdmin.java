@@ -14,7 +14,7 @@ import Model.JLabel;
 import Model.JPasswordField;
 import Model.JTextField;
 
-public class ChangePassword implements Operation {
+public class ChangePasswordAdmin implements Operation {
     @Override
     public void operation(Database database, JFrame f, User user) {
 
@@ -83,8 +83,8 @@ public class ChangePassword implements Operation {
                     return;
                 }
                 try{
-                    String update = "UPDATE `user` SET" +
-                            " `password`='"+newPassword.getText()+"' WHERE `ID` = '"+user.getID()+"'";
+                    String update = "UPDATE `admin` SET" +
+                            " `password`='"+newPassword.getText()+"' WHERE `admin_id` = '"+user.getID()+"'";
                     database.getStatement().execute(update);
                     JOptionPane.showMessageDialog(frame, "Password changed successfully");
                     System.out.println("Password changed successfully!");

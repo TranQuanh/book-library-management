@@ -44,9 +44,9 @@ public class ReturnBook implements Operation {
         String[] ids= new String[] {" "};
         ArrayList<Integer> idsArray = new ArrayList<>();
         try{
-            ResultSet rs1 = database.getStatement().executeQuery("SELECT `id` FROM `rent` WHERE `userid` = '"+user.getID()+"' AND status = 0" );
+            ResultSet rs1 = database.getStatement().executeQuery("SELECT `rent_id` FROM `rent` WHERE `client_id` = '"+user.getID()+"' AND status = 0" );
             while (rs1.next()) {
-                idsArray.add(rs1.getInt("ID"));
+                idsArray.add(rs1.getInt("rent_id"));
             }
         } catch (Exception e0){
             System.out.println("0202");
@@ -84,21 +84,21 @@ public class ReturnBook implements Operation {
                 }
 
                 try{
-                    String select = "SELECT * FROM `rent` WHERE `ID` = '"+id.getSelectedItem().toString()+"';";
+                    String select = "SELECT * FROM `rent` WHERE `rent_id` = '"+id.getSelectedItem().toString()+"';";
                     ResultSet rs = database.getStatement().executeQuery(select);
                     rs.next();
                     Rent r = new Rent();
-                    r.setID(rs.getInt("id"));
+                    r.setID(rs.getInt("rent_id"));
                     r.setUser(user);
-                    r.setBorrowTime(rs.getString("borrowtime"));
-                    r.setTotalDays(rs.getInt("totaldays"));
+                    r.setBorrowTime(rs.getString("rent_date"));
+                    r.setTotalDays(rs.getInt("total_day"));
                     r.setStatus(rs.getInt("status"));
 
                     if(r.getStatusToString().equals("Delayed")){
                         JOptionPane.showMessageDialog(frame, r.getDelayedDays()+"delayed days\n" +
                                 "You delayed");
                     }
-                    String update = "UPDATE `rent` SET `status`='1' WHERE `id` = '" + id.getSelectedItem().toString() + "';";
+                    String update = "UPDATE `rent` SET `status`='1' WHERE `rent_id` = '" + id.getSelectedItem().toString() + "';";
                     database.getStatement().execute(update);
                     JOptionPane.showMessageDialog(frame, "Book returned successfully");
                     frame.dispose();

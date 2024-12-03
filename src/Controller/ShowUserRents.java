@@ -41,36 +41,36 @@ public class ShowUserRents implements Operation {
         ArrayList<Integer> bookIDs = new ArrayList<>();
 
         try{
-            String select = "SELECT * FROM `rent` WHERE `userid` = '"+userId+"';";
+            String select = "SELECT * FROM `rent` WHERE `client_id` = '"+userId+"';";
             ResultSet rs = database.getStatement().executeQuery(select);
             while(rs.next()){
                 Rent rent = new Rent();
-                rent.setID(rs.getInt("id"));
-                bookIDs.add(rs.getInt("bookid"));
-                rent.setBorrowTime(rs.getString("borrowtime"));
-                rent.setTotalDays(rs.getInt("totaldays"));
+                rent.setID(rs.getInt("rent_id"));
+                bookIDs.add(rs.getInt("book_id"));
+                rent.setBorrowTime(rs.getString("rent_day"));
+                rent.setTotalDays(rs.getInt("total_day"));
                 rent.setStatus(rs.getInt("status"));
                 rents.add(rent);
             }
 
-            String selectUser = "SELECT * FROM `user` WHERE `ID` = '"+userId+"';";
+            String selectUser = "SELECT * FROM `client` WHERE `client_id` = '"+userId+"';";
             ResultSet rs2 = database.getStatement().executeQuery(selectUser);
             rs2.next();
             User u = new Client();
-            u.setID(rs2.getInt("ID"));
-            u.setFirstName(rs2.getString("firstname"));
-            u.setLastName(rs2.getString("lastname"));
+            u.setID(rs2.getInt("client_id"));
+            u.setFirstName(rs2.getString("first_name"));
+            u.setLastName(rs2.getString("last_name"));
             u.setEmail(rs2.getString("email"));
-            u.setPhoneNumber(rs2.getString("phonenumber"));
+            u.setPhoneNumber(rs2.getString("phone_number"));
             u.setPassword(rs2.getString("password"));
             for(int j = 0; j < rents.size(); j++){
                 Rent r = rents.get(j);
                 r.setUser(u);
                 ResultSet rs3 = database.getStatement()
-                .executeQuery("SELECT * FROM `book` WHERE `ID` = '"+bookIDs.get(j)+"';");
+                .executeQuery("SELECT * FROM `book` WHERE `book_id` = '"+bookIDs.get(j)+"';");
                 rs3.next();
                 Book b = new Book();
-                b.setID(rs3.getInt("id"));
+                b.setID(rs3.getInt("book_id"));
                 b.setName(rs3.getString("name"));
                 b.setAuthor(rs3.getString("author"));
                 b.setPublisher(rs3.getString("publisher"));

@@ -43,9 +43,9 @@ public class ShowSpecUserRents implements Operation {
 
         ArrayList<Integer> ids = new ArrayList<>();
         try{
-            ResultSet rs0 = database.getStatement().executeQuery("SELECT `ID` FROM `user` WHERE `Type` = '0';");
+            ResultSet rs0 = database.getStatement().executeQuery("SELECT `client_id` FROM `client`;");
             while(rs0.next()) {
-                ids.add(rs0.getInt("ID"));
+                ids.add(rs0.getInt("client_id"));
 
 
             }
@@ -104,18 +104,15 @@ public class ShowSpecUserRents implements Operation {
         ArrayList<User> users = new ArrayList<>();
 
         try{
-            ResultSet rs = database.getStatement().executeQuery("SELECT * FROM `user`;");
+            ResultSet rs = database.getStatement().executeQuery("SELECT * FROM `client`;");
             while(rs.next()) {
-                int accType = rs.getInt("type");
-                if(accType == 0) {
-                    User u = new Client();
-                    u.setID(rs.getInt("ID"));
-                    u.setFirstName(rs.getString("firstname"));
-                    u.setLastName(rs.getString("lastname"));
-                    u.setEmail(rs.getString("email"));
-                    u.setPhoneNumber(rs.getString("phonenumber"));
-                    users.add(u);
-                }
+                User u = new Client();
+                u.setID(rs.getInt("client_id"));
+                u.setFirstName(rs.getString("first_name"));
+                u.setLastName(rs.getString("last_name"));
+                u.setEmail(rs.getString("email"));
+                u.setPhoneNumber(rs.getString("phone_number"));
+                users.add(u);
             }
         } catch (SQLException e){
             JOptionPane.showMessageDialog(frame,e.getMessage());

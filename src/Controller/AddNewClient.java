@@ -18,10 +18,8 @@ import Model.JTextField;
 import javax.swing.*;
 import Model.JPasswordField;
 
-public class AddNewAccount implements Operation {
-    private int accType;
-    public AddNewAccount(int accType) {
-        this.accType = accType;
+public class AddNewClient implements Operation {
+    public AddNewClient() {
     }
 
     @Override
@@ -113,9 +111,9 @@ public class AddNewAccount implements Operation {
                 }
                 try {
                     ArrayList<String> emails = new ArrayList<>();
-                    ResultSet rs0 = database.getStatement().executeQuery("SELECT `Email` FROM `user`;");
+                    ResultSet rs0 = database.getStatement().executeQuery("SELECT `email` FROM `client`;");
                     while (rs0.next()) {
-                        emails.add(rs0.getString("Email"));
+                        emails.add(rs0.getString("email"));
                     }
 
                     if (emails.contains(email.getText())) {
@@ -123,27 +121,27 @@ public class AddNewAccount implements Operation {
                         return;
                     }
 
-                    ResultSet rs = database.getStatement().executeQuery("SELECT COUNT(*) as count FROM user");
-                    rs.next();
-                    int ID = rs.getInt("count") + 1;
-                    String insert = "INSERT INTO `user`(`id`,`firstname`,`lastname`, " +
-                            " `email`,`phonenumber`,`password`,`type`) VALUES " +
-                            " ('" + ID + "', '" + firstname.getText() + "', '" + lastname.getText() + "', '" + email.getText() + "'," +
-                            "'" + phone.getText() + "','" + password.getText() + "','" + accType + "');";
+
+                    String insert = "INSERT INTO `client`(`first_name`,`last_name`, " +
+                            " `email`,`phone_number`,`password`) VALUES " +
+                            " ('" + firstname.getText() + "', '" + lastname.getText() + "', '" + email.getText() + "'," +
+                            "'" + phone.getText() + "','" + password.getText() + "');";
                     database.getStatement().execute(insert);
                     JOptionPane.showMessageDialog(frame, "Account Created Successfully");
                     frame.dispose();
-                    if (accType == 0) {
-                        User user = new Client();
-                        user.setID(ID);
-                        user.setFirstName(firstname.getText());
-                        user.setLastName(lastname.getText());
-                        user.setEmail(email.getText());
-                        user.setPhoneNumber(phone.getText());
-                        user.setPassword(password.getText());
-                        user.showList(database, frame);
-                    }
+                    User user = new Client();
+                    ResultSet rs = database.getStatement().executeQuery("SELECT COUNT(*) as count FROM client");
+                    rs.next();
+                    int ID = rs.getInt("count") ;
+                    user.setID(ID);
+                    user.setFirstName(firstname.getText());
+                    user.setLastName(lastname.getText());
+                    user.setEmail(email.getText());
+                    user.setPhoneNumber(phone.getText());
+                    user.setPassword(password.getText());
+                    user.showList(database, frame);
                 } catch (SQLException e1) {
+                    System.out.println("123");
                     JOptionPane.showMessageDialog(frame, e1.getMessage());
                 }
             }

@@ -46,9 +46,9 @@ public class UpdateBook implements Operation {
         String[] ids= new String[] {" "};
         ArrayList<Integer> idsArray = new ArrayList<>();
         try{
-            ResultSet rs1 = database.getStatement().executeQuery("SELECT `id` FROM `book` ");
+            ResultSet rs1 = database.getStatement().executeQuery("SELECT `book_id` FROM `book` ");
             while (rs1.next()) {
-                idsArray.add(rs1.getInt("ID"));
+                idsArray.add(rs1.getInt("book_id"));
             }
         } catch (Exception e0){
             JOptionPane.showMessageDialog(frame, e0.getMessage());
@@ -138,7 +138,7 @@ public class UpdateBook implements Operation {
                             "`author` = '"+author.getText()+"', " +
                             "`publisher` = '"+publisher.getText()+"', " +
                             "`count` = '"+num+"' " +
-                            "WHERE `ID` = '"+id.getSelectedItem()+"';";
+                            "WHERE `book_id` = '"+id.getSelectedItem()+"';";
                     database.getStatement().executeUpdate(update);
                     JOptionPane.showMessageDialog(frame, "Book updated successfully");
                     frame.dispose();
@@ -165,7 +165,7 @@ public class UpdateBook implements Operation {
         else {
             try {
                 ResultSet rs1 = database.getStatement()
-                        .executeQuery("SELECT * FROM `book` WHERE `ID` = '" + ID+ "';");
+                        .executeQuery("SELECT * FROM `book` WHERE `book_id` = '" + ID+ "';");
                 rs1.next();
                 name.setText(rs1.getString("name"));
                 author.setText(rs1.getString("author"));

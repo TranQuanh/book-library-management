@@ -6,14 +6,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
 
-import Model.Book;
-import Model.Database;
+import Model.*;
 import Model.JButton;
 import Model.JLabel;
-import Model.Operation;
-import Model.User;
 
 import javax.swing.*;
+import javax.swing.JTextField;
 
 public class DeleteBook implements Operation {
 
@@ -46,11 +44,12 @@ public class DeleteBook implements Operation {
         String[] ids= new String[] {" "};
         ArrayList<Integer> idsArray = new ArrayList<>();
         try{
-            ResultSet rs1 = database.getStatement().executeQuery("SELECT `id` FROM `book` ");
+            ResultSet rs1 = database.getStatement().executeQuery("SELECT `book_id` FROM `book` ");
             while (rs1.next()) {
-                idsArray.add(rs1.getInt("ID"));
+                idsArray.add(rs1.getInt("book_id"));
             }
         } catch (Exception e0){
+            System.out.println("loi o day");
             JOptionPane.showMessageDialog(frame, e0.getMessage());
             frame.dispose();
         }
@@ -116,10 +115,24 @@ public class DeleteBook implements Operation {
 
                 if (confirmDialog == JOptionPane.YES_OPTION) {
                     try {
+                        CreateBook createBook = new CreateBook();
+                        String select = "SELECT count FROM `book` WHERE `book_id` = "+ id.getSelectedItem()+";";
+                         ResultSet rs2 = database.getStatement().executeQuery(select);
+                         rs2.next();
+                         int book_count = rs2.getInt("count");
+
+
                         // Modified: Update count to 0 instead of deleting the book
-                        String updateQuery = "UPDATE `book` SET `count` = 0 WHERE `ID` = '"+id.getSelectedItem()+"';";
+                        String updateQuery = "UPDATE `book` SET `count` = 0 WHERE `book_id` = '"+id.getSelectedItem()+"';";
                         database.getStatement().executeUpdate(updateQuery);
                         JOptionPane.showMessageDialog(frame, "Book count set to 0 successfully");
+
+                        String insert = "INSERT INTO `create_book`(`book_id`,`admin_id`, " +
+                                " `create_date`,`count`) VALUES " +
+                                " ('"+id.getSelectedItem()+"', '"+user.getID()+"', '"+createBook.getCreateDate()+"'," +
+                                "'"+-(book_count)+"');";
+                        database.getStatement().executeUpdate(insert);
+
                         frame.dispose();
                     } catch (SQLException e2) {
                         System.out.println("Delete error");
@@ -145,7 +158,7 @@ public class DeleteBook implements Operation {
         else {
             try {
                 ResultSet rs1 = database.getStatement()
-                        .executeQuery("SELECT * FROM `book` WHERE `ID` = '" + ID+ "';");
+                        .executeQuery("SELECT * FROM `book` WHERE `book_id` = '" + ID+ "';");
                 rs1.next();
                 name.setText(rs1.getString("name"));
                 author.setText(rs1.getString("author"));
