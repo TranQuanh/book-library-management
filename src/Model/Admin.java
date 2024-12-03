@@ -44,7 +44,7 @@ public class Admin extends User {
         frame.setLocationRelativeTo(f);
         frame.getContentPane().setBackground(new Color(250,206,27));
         frame.setLayout(new BorderLayout());
-        JLabel title = new JLabel("Welcome Admin:"+getFirstName(),"Noto Serif Regular",45,scheme1);
+        JLabel title = new JLabel("Welcome Admin: "+getFirstName(),"Noto Serif Regular",45,scheme1);
         title.setBorder(BorderFactory.createEmptyBorder(50,50,50,50));
         frame.add(title, BorderLayout.NORTH);
 
@@ -56,7 +56,7 @@ public class Admin extends User {
         layout.add(title, BorderLayout.NORTH);
 
 
-        JPanel panel = new JPanel(new GridLayout(btns.length,1,15,15));
+        JPanel panel = new JPanel(new GridLayout(btns.length/2,2,15,15));
         panel.setBackground(null);
         panel.setBorder(BorderFactory.createEmptyBorder(20,20,20,20));
         for(int i=0;i<btns.length;i++) {
