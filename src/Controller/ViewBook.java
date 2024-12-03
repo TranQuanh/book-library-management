@@ -85,11 +85,11 @@ public class ViewBook implements Operation {
                     ResultSet rs = database.getStatement().executeQuery(query.toString());
                     while (rs.next()){
                         Book book = new Book();
-                        book.setID(rs.getInt("ID"));
-                        book.setName(rs.getString("Name"));
-                        book.setAuthor(rs.getString("Author"));
-                        book.setPublisher(rs.getString("Publisher"));
-                        book.setCount(rs.getInt("Count"));
+                        book.setID(rs.getInt("book_id"));
+                        book.setName(rs.getString("name"));
+                        book.setAuthor(rs.getString("author"));
+                        book.setPublisher(rs.getString("publisher"));
+                        book.setCount(rs.getInt("count"));
                         books.add(book);
                     }
                 } catch (SQLException ex) {
@@ -123,11 +123,11 @@ public class ViewBook implements Operation {
             ResultSet rs = database.getStatement().executeQuery(select);
             while (rs.next()){
                 Book book = new Book();
-                book.setID(rs.getInt("ID"));
-                book.setName(rs.getString("Name"));
-                book.setAuthor(rs.getString("Author"));
-                book.setPublisher(rs.getString("Publisher"));
-                book.setCount(rs.getInt("Count"));
+                book.setID(rs.getInt("book_id"));
+                book.setName(rs.getString("name"));
+                book.setAuthor(rs.getString("author"));
+                book.setPublisher(rs.getString("publisher"));
+                book.setCount(rs.getInt("count"));
                 books.add(book);
             }
         } catch (SQLException e) {
