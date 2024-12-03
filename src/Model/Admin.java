@@ -13,11 +13,11 @@ public class Admin extends User {
             new ViewBook(),
             new UpdateBook(),
             new DeleteBook(),
-            new AddNewAccount(1),
+            new AddNewAdmin(),
             new ShowAllRents(),
             new ShowSpecUserRents(),
-            new EditUserData(),
-            new ChangePassword(),
+            new EditUserDataAdmin(),
+            new ChangePasswordAdmin(),
             new Quit()
     };
     private JButton[] btns = new JButton[]{

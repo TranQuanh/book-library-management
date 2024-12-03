@@ -1,55 +1,82 @@
-create database bookmanagement;
-use bookmanagement;
-CREATE TABLE user (
-    id INT PRIMARY KEY,
-    firstname VARCHAR(255) NOT NULL,
-    lastname VARCHAR(255) NOT NULL,
-    email VARCHAR(255) NOT NULL,
-    phonenumber VARCHAR(255) NOT NULL,
-    password VARCHAR(15),
-    type INT
+create database booklibrary;
+USE booklibrary;
+-- Tạo bảng Admin
+CREATE TABLE Admin (
+    admin_id INT PRIMARY KEY AUTO_INCREMENT,
+    first_name VARCHAR(255),
+    last_name VARCHAR(255),
+    email VARCHAR(255) UNIQUE,
+    password VARCHAR(255),
+    phone_number VARCHAR(255)
 );
-create table book(
-    id int primary key,
-    name varchar(225) not null,
-    author varchar(225) not null,
-    publisher varchar(225) not null,
-    count int
+
+-- Tạo bảng Client
+CREATE TABLE Client (
+    client_id INT PRIMARY KEY AUTO_INCREMENT,
+    first_name VARCHAR(255),
+    last_name VARCHAR(255),
+    email VARCHAR(255) UNIQUE,
+    password VARCHAR(255),
+    phone_number VARCHAR(255)
 );
-create table rent(
-	id int primary key,
-    userid int not null,
-    bookid int not null,
-    borrowtime VARCHAR(250) not null,
-    totaldays int not null,
-    status int not null
+
+-- Tạo bảng Book
+CREATE TABLE Book (
+    book_id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(255),
+    author VARCHAR(255),
+    publisher VARCHAR(255),
+    count INT
+);
+
+-- Tạo bảng Create_Book
+CREATE TABLE Create_Book (
+    create_id INT PRIMARY KEY AUTO_INCREMENT,
+    book_id INT,
+    admin_id INT,
+    create_date DATETIME,
+    count INT,
+    FOREIGN KEY (book_id) REFERENCES Book(book_id) ON DELETE SET NULL,
+    FOREIGN KEY (admin_id) REFERENCES Admin(admin_id) ON DELETE SET NULL
+);
+-- Tạo bảng Rent
+CREATE TABLE Rent (
+    rent_id INT PRIMARY KEY AUTO_INCREMENT,
+    book_id INT,
+    client_id INT,
+    rent_date DATETIME,
+    total_day INT,
+    status INT,
+    FOREIGN KEY (book_id) REFERENCES Book(book_id) ON DELETE SET NULL,
+    FOREIGN KEY (client_id) REFERENCES Client(client_id) ON DELETE SET NULL
 );
 DELIMITER $$
 
 CREATE TRIGGER rent_after_insert
-AFTER INSERT ON rent
+AFTER INSERT ON Rent
 FOR EACH ROW
 BEGIN
     IF NEW.status = 0 THEN
-        UPDATE book
+        UPDATE Book
         SET count = count - 1
-        WHERE id = NEW.bookid;
+        WHERE book_id = NEW.book_id;
     END IF;
 END$$
 
 CREATE TRIGGER rent_after_update
-AFTER UPDATE ON rent
+AFTER UPDATE ON Rent
 FOR EACH ROW
 BEGIN
     IF OLD.status = 0 AND NEW.status = 1 THEN
         UPDATE book
         SET count = count + 1
-        WHERE id = NEW.bookid;
+        WHERE book_id = NEW.book_id;
 
     END IF;
 END$$
 
 DELIMITER ;
+
 
 INSERT INTO book(ID, Name, Author, Publisher, Count) VALUES
 (1, 'The Great Gatsby', 'F. Scott Fitzgerald', 'Scribner', 10),

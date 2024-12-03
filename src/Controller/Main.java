@@ -64,7 +64,7 @@ public class Main {
         createAcc.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new AddNewAccount(0).operation(database, frame, null);
+                new AddNewClient().operation(database, frame, null);
                 frame.dispose();
             }
         });
@@ -72,37 +72,51 @@ public class Main {
 
         ArrayList<User> users = new ArrayList<>();
         try {
-            String select = "SELECT * FROM `user`;";   // Fixed SQL syntax
+            String select = "SELECT * FROM `admin`;";   // Fixed SQL syntax
             ResultSet rs = database.getStatement().executeQuery(select);
             while (rs.next()) {
-                User user;
-                int ID = rs.getInt("ID");
-                String firstName = rs.getString("FirstName");
-                String lastName = rs.getString("LastName");
-                String em = rs.getString("Email");  // Fixed to double quotes
-                String phoneNumber = rs.getString("PhoneNumber");
-                String pass = rs.getString("Password");  // Fixed typo
+                int ID = rs.getInt("admin_id");
+                String firstName = rs.getString("first_name");
+                String lastName = rs.getString("last_name");
+                String em = rs.getString("email");  // Fixed to double quotes
+                String phoneNumber = rs.getString("phone_number");
+                String pass = rs.getString("password");  // Fixed typo
 
-                int type = rs.getInt("Type");
-                if (type == 0){
-                    user = new Client();
-                    user.setID(ID);
-                    user.setFirstName(firstName);
-                    user.setLastName(lastName);
-                    user.setEmail(em);
-                    user.setPhoneNumber(phoneNumber);
-                    user.setPassword(pass);
-                    users.add(user);
-                } else if (type == 1) {
-                    user = new Admin();
-                    user.setID(ID);
-                    user.setFirstName(firstName);
-                    user.setLastName(lastName);
-                    user.setEmail(em);
-                    user.setPhoneNumber(phoneNumber);
-                    user.setPassword(pass);
-                    users.add(user);
-                }
+
+                User user = new Admin();
+                user.setID(ID);
+                user.setFirstName(firstName);
+                user.setLastName(lastName);
+                user.setEmail(em);
+                user.setPhoneNumber(phoneNumber);
+                user.setPassword(pass);
+                users.add(user);
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        try {
+            String select = "SELECT * FROM `client`;";   // Fixed SQL syntax
+            ResultSet rs = database.getStatement().executeQuery(select);
+            while (rs.next()) {
+                int ID = rs.getInt("client_id");
+                String firstName = rs.getString("first_name");
+                String lastName = rs.getString("last_name");
+                String em = rs.getString("email");  // Fixed to double quotes
+                String phoneNumber = rs.getString("phone_number");
+                String pass = rs.getString("password");  // Fixed typo
+
+
+                User user = new Client();
+                user.setID(ID);
+                user.setFirstName(firstName);
+                user.setLastName(lastName);
+                user.setEmail(em);
+                user.setPhoneNumber(phoneNumber);
+                user.setPassword(pass);
+                users.add(user);
+
             }
         } catch (SQLException e) {
             e.printStackTrace();

@@ -5,7 +5,7 @@ import java.sql.*;
 public class Database {
     private String user ="root";
     private String password =  "111111";
-    private String url = "jdbc:mysql://localhost:3306/bookmanagement";
+    private String url = "jdbc:mysql://localhost:3306/booklibrary";
     Statement statement;
 
     public Database() {

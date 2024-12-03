@@ -6,12 +6,11 @@ import java.sql.ResultSet;
 import java.sql.SQLOutput;
 import java.util.*;
 import java.sql.SQLException;
-import Model.Database;
+
+import Model.*;
 import Model.JButton;
 import Model.JLabel;
 import Model.JTextField;
-import Model.Operation;
-import Model.User;
 
 import javax.swing.*;
 
@@ -87,7 +86,7 @@ public class AddNewBook implements Operation {
 
                 try {
 
-                    String checkQuery = "SELECT id, count FROM `Book` WHERE name = '" + name.getText() +
+                    String checkQuery = "SELECT book_id, count FROM `Book` WHERE name = '" + name.getText() +
                             "' AND author = '" + author.getText() +
                             "' AND publisher = '" + publisher.getText() + "'";
                     ResultSet rs = database.getStatement().executeQuery(checkQuery);
@@ -96,31 +95,49 @@ public class AddNewBook implements Operation {
 
                         int existingCount = rs.getInt("count");
                         int newCount = existingCount + num;
-                        int existingId = rs.getInt("id");
+                        int existingId = rs.getInt("book_id");
 
-                        String updateQuery = "UPDATE `Book` SET count = " + newCount +
+                        String updateQuery = "UPDATE `book` SET count = " + newCount +
                                 " WHERE id = " + existingId;
                         database.getStatement().executeUpdate(updateQuery);
 
                         JOptionPane.showMessageDialog(frame, "Book Updated!");
                     } else {
 
-                        ResultSet rs2 = database.getStatement().executeQuery("SELECT COUNT(*) as count FROM `book`");
-                        rs2.next();
-                        int ID = rs2.getInt("count") + 1;
-                        String insert = "INSERT INTO `book`(`id`,`name`,`author`, " +
+                        String insert = "INSERT INTO `book`(`name`,`author`, " +
                                 " `publisher`,`count`) VALUES " +
-                                " ('"+ID+"', '"+name.getText()+"', '"+author.getText()+"', '"+publisher.getText()+"'," +
+                                " ('"+name.getText()+"', '"+author.getText()+"', '"+publisher.getText()+"'," +
                                 "'"+num+"');";
                         database.getStatement().executeUpdate(insert);
                         JOptionPane.showMessageDialog(frame, "Book Added");
                     }
 
-                    frame.dispose();
                 }
                 catch (SQLException ex) {
+                    System.out.println("54312");
                     JOptionPane.showMessageDialog(frame, ex.getMessage());
                 }
+
+                try {
+                    ResultSet rs2 = database.getStatement().executeQuery("SELECT COUNT(*) as count FROM `book`");
+                    rs2.next();
+                    int idBook = rs2.getInt("count") ;
+                    CreateBook createBook = new CreateBook();
+
+                    String insert = "INSERT INTO `create_book`(`book_id`,`admin_id`, " +
+                            " `create_date`,`count`) VALUES " +
+                            " ('"+idBook+"', '"+user.getID()+"', '"+createBook.getCreateDate()+"'," +
+                            "'"+num+"');";
+                    database.getStatement().executeUpdate(insert);
+
+
+                    frame.dispose();
+                }
+                catch (SQLException exq) {
+                    System.out.println("123");
+                    JOptionPane.showMessageDialog(frame, exq.getMessage());
+                }
+
             }
         });
         panel.add(save);

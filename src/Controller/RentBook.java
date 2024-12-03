@@ -43,9 +43,9 @@ public class RentBook implements Operation {
         String[] ids= new String[] {" "};
         ArrayList<Integer> idsArray = new ArrayList<>();
         try{
-            ResultSet rs1 = database.getStatement().executeQuery("SELECT `id` FROM `book` ");
+            ResultSet rs1 = database.getStatement().executeQuery("SELECT `book_id` FROM `book` ");
             while (rs1.next()) {
-                idsArray.add(rs1.getInt("ID"));
+                idsArray.add(rs1.getInt("book_id"));
             }
         } catch (Exception e0){
             JOptionPane.showMessageDialog(frame, e0.getMessage());
@@ -116,10 +116,10 @@ public class RentBook implements Operation {
                 try{
 
                     ResultSet rs0 = database.getStatement()
-                            .executeQuery("SELECT * FROM `book` WHERE `ID` = '"+id.getSelectedItem().toString()+"';");
+                            .executeQuery("SELECT * FROM `book` WHERE `book_id` = '"+id.getSelectedItem().toString()+"';");
                     rs0.next();
                     Book book = new Book();
-                    book.setID(rs0.getInt("ID"));
+                    book.setID(rs0.getInt("book_id"));
                     book.setName(rs0.getString("name"));
                     book.setAuthor(rs0.getString("author"));
                     book.setPublisher(rs0.getString("publisher"));
@@ -136,7 +136,7 @@ public class RentBook implements Operation {
 
                     Rent rent = new Rent();
 
-                    String insert = "INSERT INTO `rent` (`id`,`userid`,`bookid`,`borrowtime`,`totaldays`,`Status`)" +
+                    String insert = "INSERT INTO `rent` (`rent_id`,`client_id`,`book_id`,`rent_date`,`total_day`,`status`)" +
                             " VALUES('"+ID+"','"+user.getID()+"','"+book.getID()+"','"+rent.getBorrowTime()+"','"+daysInt+"','"+0+"')";
                     database.getStatement().execute(insert);
                     JOptionPane.showMessageDialog(frame, "Book Rent Successfully");
@@ -161,7 +161,7 @@ public class RentBook implements Operation {
         else {
             try {
                 ResultSet rs1 = database.getStatement()
-                        .executeQuery("SELECT * FROM `book` WHERE `ID` = '" + ID+ "';");
+                        .executeQuery("SELECT * FROM `book` WHERE `book_id` = '" + ID+ "';");
                 rs1.next();
                 name.setText(rs1.getString("name"));
                 author.setText(rs1.getString("author"));
