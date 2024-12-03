@@ -67,15 +67,15 @@ public class AddNewAdmin implements Operation {
         confirmPassword.setForeground(scheme2);
         panel.add(confirmPassword);
 
-        JButton login = new JButton("Login",22,new Color(233, 155, 155),scheme2);
-        login.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Main.start();
-                frame.dispose();
-            }
-        });
-        panel.add(login);
+//        JButton login = new JButton("Login",22,new Color(233, 155, 155),scheme2);
+//        login.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                Main.start();
+//                frame.dispose();
+//            }
+//        });
+//        panel.add(login);
 
         JButton createAcc = new JButton("Create Account",22,new Color(233, 155, 155),scheme2);
         createAcc.addActionListener(new ActionListener() {
@@ -111,7 +111,7 @@ public class AddNewAdmin implements Operation {
                 }
                 try {
                     ArrayList<String> emails = new ArrayList<>();
-                    ResultSet rs0 = database.getStatement().executeQuery("SELECT `email` FROM `admin`;");
+                    ResultSet rs0 = database.getStatement().executeQuery("SELECT `email` FROM `admin` UNION SELECT `email` FROM `client`;");
                     while (rs0.next()) {
                         emails.add(rs0.getString("email"));
                     }
