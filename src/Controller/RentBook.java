@@ -22,8 +22,8 @@ public class RentBook implements Operation {
     public void operation(Database database, JFrame f, User user){
 
         this.database = database;
-        Color scheme1 = new Color(255, 208, 208);
-        Color scheme2 = new Color(168, 118, 118);
+        Color scheme1 =Color.WHITE;
+        Color scheme2 = new Color(101, 123, 119);
 
         frame = new JFrame("Rent Book");
         frame.setSize(900,850);
@@ -94,7 +94,7 @@ public class RentBook implements Operation {
         panel.add(new JLabel("",22));
 
 
-        JButton confirm = new JButton("Confirm",22,new Color(233, 155, 155),scheme2);
+        JButton confirm = new JButton("Confirm",22,new Color(146, 171, 160),scheme2);
         confirm.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

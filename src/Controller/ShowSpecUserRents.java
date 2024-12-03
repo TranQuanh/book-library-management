@@ -17,8 +17,8 @@ import java.util.Scanner;
 
 public class ShowSpecUserRents implements Operation {
 
-    Color scheme1 = new Color(255, 208, 208);
-    Color scheme2 = new Color(168, 118, 118);
+    Color scheme1 = Color.WHITE;
+    Color scheme2 = new Color(101, 123, 119);
 
     @Override
     public void operation(Database database, JFrame f, User user) {
@@ -62,7 +62,7 @@ public class ShowSpecUserRents implements Operation {
         JComboBox id = new JComboBox(idsArray,22,scheme2);
         panel.add(id);
 
-        JButton showUsers = new JButton("Show All Users", 22,new Color(233, 155, 155),scheme2);
+        JButton showUsers = new JButton("Show All Users", 22,new Color(146, 171, 160),scheme2);
         showUsers.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -71,7 +71,7 @@ public class ShowSpecUserRents implements Operation {
         });
         panel.add(showUsers);
 
-        JButton confirm = new JButton ("Confirm", 22,new Color(233, 155, 155),scheme2);
+        JButton confirm = new JButton ("Confirm", 22,new Color(146, 171, 160),scheme2);
         confirm.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

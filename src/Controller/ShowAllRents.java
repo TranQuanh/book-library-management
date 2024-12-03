@@ -23,8 +23,8 @@ public class ShowAllRents implements Operation {
     @Override
     public void operation(Database database, JFrame f, User user) {
 
-        Color scheme1 = new Color(255, 208, 208);
-        Color scheme2 = new Color(168, 118, 118);
+        Color scheme1 = Color.WHITE;
+        Color scheme2 = new Color(101, 123, 119);
 
         JFrame frame = new JFrame();
         frame.setSize(1500,750);

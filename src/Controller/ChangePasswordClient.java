@@ -18,8 +18,8 @@ public class ChangePasswordClient implements Operation {
     @Override
     public void operation(Database database, JFrame f, User user) {
 
-        Color scheme1 = new Color(255, 208, 208);
-        Color scheme2 = new Color(168, 118, 118);
+        Color scheme1 = Color.WHITE;
+        Color scheme2 = new Color(101, 123, 119);
 
         JFrame frame = new JFrame("Change Password");
         frame.setSize(800,600);
@@ -49,7 +49,7 @@ public class ChangePasswordClient implements Operation {
         confirmPassword.setForeground(scheme2);
         panel.add(confirmPassword);
 
-        JButton cancel = new JButton("Cancel", 22,new Color(233, 155, 155),scheme2);
+        JButton cancel = new JButton("Cancel", 22,new Color(146, 171, 160),scheme2);
         cancel.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -58,7 +58,7 @@ public class ChangePasswordClient implements Operation {
         });
         panel.add(cancel);
 
-        JButton confirm = new JButton("Confirm", 22,new Color(233, 155, 155),scheme2);
+        JButton confirm = new JButton("Confirm", 22,new Color(146, 171, 160),scheme2);
         confirm.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ev) {
