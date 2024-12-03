@@ -111,7 +111,7 @@ public class AddNewClient implements Operation {
                 }
                 try {
                     ArrayList<String> emails = new ArrayList<>();
-                    ResultSet rs0 = database.getStatement().executeQuery("SELECT `email` FROM `client`;");
+                    ResultSet rs0 = database.getStatement().executeQuery("SELECT `email` FROM `admin` UNION SELECT `email` FROM `client`;");
                     while (rs0.next()) {
                         emails.add(rs0.getString("email"));
                     }

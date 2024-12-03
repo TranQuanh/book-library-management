@@ -1,5 +1,6 @@
-create database booklibrary;
+CREATE DATABASE booklibrary;
 USE booklibrary;
+
 -- Tạo bảng Admin
 CREATE TABLE Admin (
     admin_id INT PRIMARY KEY AUTO_INCREMENT,
@@ -36,9 +37,10 @@ CREATE TABLE Create_Book (
     admin_id INT,
     create_date DATETIME,
     count INT,
-    FOREIGN KEY (book_id) REFERENCES Book(book_id) ON DELETE SET NULL,
-    FOREIGN KEY (admin_id) REFERENCES Admin(admin_id) ON DELETE SET NULL
+    FOREIGN KEY (book_id) REFERENCES Book(book_id) ON DELETE CASCADE,
+    FOREIGN KEY (admin_id) REFERENCES Admin(admin_id) ON DELETE CASCADE
 );
+
 -- Tạo bảng Rent
 CREATE TABLE Rent (
     rent_id INT PRIMARY KEY AUTO_INCREMENT,
@@ -47,11 +49,13 @@ CREATE TABLE Rent (
     rent_date DATETIME,
     total_day INT,
     status INT,
-    FOREIGN KEY (book_id) REFERENCES Book(book_id) ON DELETE SET NULL,
-    FOREIGN KEY (client_id) REFERENCES Client(client_id) ON DELETE SET NULL
+    FOREIGN KEY (book_id) REFERENCES Book(book_id) ON DELETE CASCADE,
+    FOREIGN KEY (client_id) REFERENCES Client(client_id) ON DELETE CASCADE
 );
+
 DELIMITER $$
 
+-- Tạo trigger giảm số lượng sách khi cho thuê
 CREATE TRIGGER rent_after_insert
 AFTER INSERT ON Rent
 FOR EACH ROW
@@ -63,39 +67,16 @@ BEGIN
     END IF;
 END$$
 
+-- Tạo trigger tăng số lượng sách khi trả sách
 CREATE TRIGGER rent_after_update
 AFTER UPDATE ON Rent
 FOR EACH ROW
 BEGIN
     IF OLD.status = 0 AND NEW.status = 1 THEN
-        UPDATE book
+        UPDATE Book
         SET count = count + 1
         WHERE book_id = NEW.book_id;
-
     END IF;
 END$$
 
 DELIMITER ;
-
-
-INSERT INTO book(ID, Name, Author, Publisher, Count) VALUES
-(1, 'The Great Gatsby', 'F. Scott Fitzgerald', 'Scribner', 10),
-(2, 'Moby Dick', 'Herman Melville', 'Harper & Brothers', 10),
-(3, 'To Kill a Mockingbird', 'Harper Lee', 'J.B. Lippincott & Co.', 10),
-(4, '1984', 'George Orwell', 'Secker & Warburg', 10),
-(5, 'Pride and Prejudice', 'Jane Austen', 'T. Egerton', 10),
-(6, 'The Catcher in the Rye', 'J.D. Salinger', 'Little, Brown and Co.', 10),
-(7, 'The Hobbit', 'J.R.R. Tolkien', 'George Allen & Unwin', 10),
-(8, 'Brave New World', 'Aldous Huxley', 'Chatto & Windus', 10),
-(9, 'The Lord of the Rings', 'J.R.R. Tolkien', 'George Allen & Unwin', 10),
-(10, 'Crime and Punishment', 'Fyodor Dostoevsky', 'The Russian Messenger', 10),
-(11, 'The Picture of Dorian Gray', 'Oscar Wilde', 'Lippincott’s Monthly Magazine', 10),
-(12, 'War and Peace', 'Leo Tolstoy', 'The Russian Messenger', 10),
-(13, 'Ulysses', 'James Joyce', 'Sylvia Beach', 10),
-(14, 'Catch-22', 'Joseph Heller', 'Simon & Schuster', 10),
-(15, 'Fahrenheit 451', 'Ray Bradbury', 'Ballantine Books', 10),
-(16, 'Wuthering Heights', 'Emily Brontë', 'Thomas Cautley Newby', 10),
-(17, 'Frankenstein', 'Mary Shelley', 'Lackington, Hughes, Harding, Mavor & Jones', 10),
-(18, 'Dracula', 'Bram Stoker', 'Archibald Constable and Company', 10),
-(19, 'The Odyssey', 'Homer', 'Various Publishers', 10),
-(20, 'The Divine Comedy', 'Dante Alighieri', 'Various Publishers', 10);
