@@ -36,7 +36,7 @@ public class Client extends User {
     }
 
     @Override
-    public void showList(Database database, JFrame f) {
+    public void showMenu(Database database, JFrame f) {
         JFrame frame = new JFrame("Client Panel");
         frame.setSize(1000, 1000);
         frame.setLocationRelativeTo(f);
@@ -64,7 +64,7 @@ public class Client extends User {
         backgroundPanel.setLayout(new BorderLayout());
 
         // Tiêu đề
-        JLabel title = new JLabel("Welcome User: " + getFirstName(), 22);
+        JLabel title = new JLabel("Hi, " + getFirstName() +" !", 22);
         title.setFont(new Font("Noto Serif Regular", Font.BOLD, 40));
         title.setForeground(new Color(101, 123, 119));
         title.setBorder(BorderFactory.createEmptyBorder(50, 50, 50, 50));

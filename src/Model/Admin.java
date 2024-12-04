@@ -36,7 +36,7 @@ public class Admin extends User {
         super();
     }
     @Override
-    public void showList(Database database, JFrame f) {
+    public void showMenu(Database database, JFrame f) {
         Color scheme1 = new Color(101, 123, 119);
 
         JFrame frame = new JFrame("Admin Panel");
@@ -44,7 +44,7 @@ public class Admin extends User {
         frame.setLocationRelativeTo(f);
         frame.getContentPane().setBackground(new Color(250,206,27));
         frame.setLayout(new BorderLayout());
-        JLabel title = new JLabel("Welcome Admin:"+getFirstName(),"Noto Serif Regular",45,scheme1);
+        JLabel title = new JLabel("Hi, "+getFirstName()+" !","Noto Serif Regular",45,scheme1);
         title.setBorder(BorderFactory.createEmptyBorder(50,50,50,50));
         frame.add(title, BorderLayout.NORTH);
 

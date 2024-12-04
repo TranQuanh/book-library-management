@@ -34,11 +34,8 @@ public class JTable extends javax.swing.JTable {
                 setFont(new Font("Noto Serif Regular", Font.BOLD, 20));
                 setForeground(color1);
                 if (hasFocus) setBorder(null);
-                if (row%2==0) {
-                    setBackground(Color.white);
-                } else {
-                    setBackground(color2);
-                }
+                setBackground(Color.white);
+
                 return this;
             }
         };

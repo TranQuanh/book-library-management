@@ -33,7 +33,7 @@ public class AddNewAdmin implements Operation {
         frame.getContentPane().setBackground(scheme1);
         frame.setLayout(new BorderLayout());
 
-        JLabel title = new JLabel("Welcome to Book Management System","Noto Serif Regular",45,scheme2);
+        JLabel title = new JLabel("Create new acount","Noto Serif Regular",45,scheme2);
         title.setBorder(BorderFactory.createEmptyBorder(50,50,50,50));
         frame.add(title, BorderLayout.NORTH);
 

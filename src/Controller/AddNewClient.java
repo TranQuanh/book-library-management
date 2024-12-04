@@ -33,7 +33,7 @@ public class AddNewClient implements Operation {
         frame.getContentPane().setBackground(scheme1);
         frame.setLayout(new BorderLayout());
 
-        JLabel title = new JLabel("Welcome to Book Management System","Noto Serif Regular",45,scheme2);
+        JLabel title = new JLabel("Create new account","Noto Serif Regular",45,scheme2);
         title.setBorder(BorderFactory.createEmptyBorder(50,50,50,50));
         frame.add(title, BorderLayout.NORTH);
 
@@ -139,7 +139,7 @@ public class AddNewClient implements Operation {
                     user.setEmail(email.getText());
                     user.setPhoneNumber(phone.getText());
                     user.setPassword(password.getText());
-                    user.showList(database, frame);
+                    user.showMenu(database, frame);
                 } catch (SQLException e1) {
                     System.out.println("123");
                     JOptionPane.showMessageDialog(frame, e1.getMessage());

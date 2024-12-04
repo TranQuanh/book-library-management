@@ -173,7 +173,7 @@ public class Main {
                 for(User u : users) {
                     if(u.getEmail().equals(email.getText()) && u.getPassword().equals(password.getText())) {
                         loggedIn = true;
-                        u.showList(database,frame);
+                        u.showMenu(database,frame);
                         frame.dispose();
                     }
                 }
