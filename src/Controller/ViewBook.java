@@ -80,6 +80,7 @@ public class ViewBook implements Operation {
                 if (!publisherFilter.isEmpty()) {
                     query.append("AND `Publisher` LIKE '%").append(publisherFilter).append("%' ");
                 }
+                System.out.println(query);
                 ArrayList<Book> books = new ArrayList<>();
                 try{
                     ResultSet rs = database.getStatement().executeQuery(query.toString());

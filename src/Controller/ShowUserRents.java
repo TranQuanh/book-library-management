@@ -47,7 +47,7 @@ public class ShowUserRents implements Operation {
                 Rent rent = new Rent();
                 rent.setID(rs.getInt("rent_id"));
                 bookIDs.add(rs.getInt("book_id"));
-                rent.setBorrowTime(rs.getString("rent_day"));
+                rent.setBorrowTime(rs.getString("rent_date"));
                 rent.setTotalDays(rs.getInt("total_day"));
                 rent.setStatus(rs.getInt("status"));
                 rents.add(rent);
@@ -76,7 +76,6 @@ public class ShowUserRents implements Operation {
                 b.setPublisher(rs3.getString("publisher"));
                 b.setCount(rs3.getInt("count"));
                 r.setBook(b);
-
             }
 
         } catch (SQLException e) {
