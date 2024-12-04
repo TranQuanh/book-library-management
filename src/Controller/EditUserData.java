@@ -22,7 +22,7 @@ import Model.JTextField;
 import javax.swing.*;
 import Model.JPasswordField;
 
-public class EditUserDataAdmin implements Operation {
+public class EditUserData implements Operation {
     @Override
     public void operation(Database database, JFrame f, User user) {
 
@@ -93,8 +93,8 @@ public class EditUserDataAdmin implements Operation {
                     return;
                 }
 
-                String update = "UPDATE `admin` SET `first_name` = '"+firstName.getText()+"', `last_name` = '"+lastName.getText()+"', " +
-                        "`email` = '"+email.getText() +"', `phone_number` = '"+phoneNumber.getText()+ "'WHERE `admin_id` = '"+user.getID()+"';";
+                String update = "UPDATE `user` SET `firstname` = '"+firstName.getText()+"', `lastname` = '"+lastName.getText()+"', " +
+                        "`email` = '"+email.getText() +"', `phonenumber` = '"+phoneNumber.getText()+ "'WHERE `ID` = '"+user.getID()+"';";
                 try{
                     database.getStatement().execute(update);
                     JOptionPane.showMessageDialog(frame, "Data updated successfully");

@@ -23,8 +23,8 @@ public class DeleteBook implements Operation {
     public void operation(Database database, JFrame f, User user) {
 
         this.database = database;
-        Color scheme1 = new Color(255, 208, 208);
-        Color scheme2 = new Color(168, 118, 118);
+        Color scheme1 = Color.white;
+        Color scheme2 = new Color(101, 123, 119);
 
         frame = new JFrame("Delete Book");
         frame.setSize(800,800);
@@ -89,7 +89,7 @@ public class DeleteBook implements Operation {
         number.setEditable(false);
         panel.add(number);
 
-        Model.JButton cancel = new JButton("Cancel",22,new Color(233, 155, 155),scheme2);
+        Model.JButton cancel = new JButton("Cancel",22,new Color(146, 171, 160),scheme2);
         cancel.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -98,7 +98,7 @@ public class DeleteBook implements Operation {
         });
         panel.add(cancel);
 
-        JButton delete = new JButton("Delete",22,new Color(233, 155, 155),scheme2);
+        JButton delete = new JButton("Delete",22,new Color(146, 171, 160),scheme2);
         delete.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -127,7 +127,7 @@ public class DeleteBook implements Operation {
                         database.getStatement().executeUpdate(updateQuery);
                         JOptionPane.showMessageDialog(frame, "Book count set to 0 successfully");
 
-                        String insert = "INSERT INTO `create_book`(`book_id`,`admin_id`, " +
+                        String insert = "INSERT INTO `create_Book`(`book_id`,`admin_id`, " +
                                 " `create_date`,`count`) VALUES " +
                                 " ('"+id.getSelectedItem()+"', '"+user.getID()+"', '"+createBook.getCreateDate()+"'," +
                                 "'"+-(book_count)+"');";

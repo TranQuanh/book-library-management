@@ -25,8 +25,8 @@ public class UpdateBook implements Operation {
     public void operation(Database database, JFrame f, User user) {
 
         this.database = database;
-        Color scheme1 = new Color(255, 208, 208);
-        Color scheme2 = new Color(168, 118, 118);
+        Color scheme1 = Color.WHITE;
+        Color scheme2 = new Color(101, 123, 119);
 
         frame = new JFrame("Update Book");
         frame.setSize(800,800);
@@ -86,7 +86,7 @@ public class UpdateBook implements Operation {
         number = new Model.JTextField(22,Color.WHITE,scheme2);
         panel.add(number);
 
-        Model.JButton cancel = new JButton("Cancel",22,new Color(233, 155, 155),scheme2);
+        Model.JButton cancel = new JButton("Cancel",22,new Color(146, 171, 160),scheme2);
         cancel.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -95,7 +95,7 @@ public class UpdateBook implements Operation {
         });
         panel.add(cancel);
 
-        JButton save = new JButton("Save",22,new Color(233, 155, 155),scheme2);
+        JButton save = new JButton("Save",22,new Color(146, 171, 160),scheme2);
         save.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

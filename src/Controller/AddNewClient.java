@@ -24,8 +24,8 @@ public class AddNewClient implements Operation {
 
     @Override
     public void operation(Database database, JFrame f, User user){
-        Color scheme1 = new Color(255, 208, 208);
-        Color scheme2 = new Color(168, 118, 118);
+        Color scheme1 = Color.WHITE;
+        Color scheme2 = new Color(101, 123, 119);
 
         JFrame frame = new JFrame("Create New Account");
         frame.setSize(1000,800);
@@ -67,7 +67,7 @@ public class AddNewClient implements Operation {
         confirmPassword.setForeground(scheme2);
         panel.add(confirmPassword);
 
-        JButton login = new JButton("Login",22,new Color(233, 155, 155),scheme2);
+        JButton login = new JButton("Login",22,new Color(146, 171, 160),scheme2);
         login.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -77,7 +77,7 @@ public class AddNewClient implements Operation {
         });
         panel.add(login);
 
-        JButton createAcc = new JButton("Create Account",22,new Color(233, 155, 155),scheme2);
+        JButton createAcc = new JButton("Create Account",22,new Color(146, 171, 160),scheme2);
         createAcc.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
