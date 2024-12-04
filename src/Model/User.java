@@ -66,5 +66,5 @@ public abstract class User {
         this.password = password;
     }
 
-    public abstract void showList(Database database, JFrame f);
+    public abstract void showMenu(Database database, JFrame f);
 }

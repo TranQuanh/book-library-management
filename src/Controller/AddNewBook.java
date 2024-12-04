@@ -86,7 +86,7 @@ public class AddNewBook implements Operation {
 
                 try {
 
-                    String checkQuery = "SELECT book_id, count FROM `Book` WHERE name = '" + name.getText() +
+                    String checkQuery = "SELECT book_id, count FROM `book` WHERE name = '" + name.getText() +
                             "' AND author = '" + author.getText() +
                             "' AND publisher = '" + publisher.getText() + "'";
                     ResultSet rs = database.getStatement().executeQuery(checkQuery);
@@ -124,7 +124,7 @@ public class AddNewBook implements Operation {
                     int idBook = rs2.getInt("count") ;
                     CreateBook createBook = new CreateBook();
 
-                    String insert = "INSERT INTO `create_book`(`book_id`,`admin_id`, " +
+                    String insert = "INSERT INTO `create_Book`(`book_id`,`admin_id`, " +
                             " `create_date`,`count`) VALUES " +
                             " ('"+idBook+"', '"+user.getID()+"', '"+createBook.getCreateDate()+"'," +
                             "'"+num+"');";

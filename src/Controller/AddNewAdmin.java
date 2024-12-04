@@ -24,8 +24,8 @@ public class AddNewAdmin implements Operation {
 
     @Override
     public void operation(Database database, JFrame f, User user){
-        Color scheme1 = new Color(255, 208, 208);
-        Color scheme2 = new Color(168, 118, 118);
+        Color scheme1 = Color.WHITE;
+        Color scheme2 = new Color(101, 123, 119);
 
         JFrame frame = new JFrame("Create New Account");
         frame.setSize(1000,800);
@@ -33,7 +33,7 @@ public class AddNewAdmin implements Operation {
         frame.getContentPane().setBackground(scheme1);
         frame.setLayout(new BorderLayout());
 
-        JLabel title = new JLabel("Welcome to Book Management System","Noto Serif Regular",45,scheme2);
+        JLabel title = new JLabel("Create new acount","Noto Serif Regular",45,scheme2);
         title.setBorder(BorderFactory.createEmptyBorder(50,50,50,50));
         frame.add(title, BorderLayout.NORTH);
 
@@ -67,17 +67,7 @@ public class AddNewAdmin implements Operation {
         confirmPassword.setForeground(scheme2);
         panel.add(confirmPassword);
 
-//        JButton login = new JButton("Login",22,new Color(233, 155, 155),scheme2);
-//        login.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                Main.start();
-//                frame.dispose();
-//            }
-//        });
-//        panel.add(login);
-
-        JButton createAcc = new JButton("Create Account",22,new Color(233, 155, 155),scheme2);
+        JButton createAcc = new JButton("Create Account",22,new Color(146, 171, 160),scheme2);
         createAcc.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

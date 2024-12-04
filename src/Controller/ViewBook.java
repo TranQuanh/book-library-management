@@ -21,8 +21,8 @@ import java.util.Scanner;
 public class ViewBook implements Operation {
     @Override
     public  void operation(Database database, JFrame f, User user) {
-        Color scheme1 = new Color(255, 208, 208);
-        Color scheme2 = new Color(168, 118, 118);
+        Color scheme1 = Color.WHITE;
+        Color scheme2 = new Color(101, 123, 119);
 
         JFrame frame = new JFrame("View Book");
         frame.setSize(1200,1000);
@@ -45,7 +45,7 @@ public class ViewBook implements Operation {
         JTextField filterPublisher = new Model.JTextField(22,Color.WHITE,scheme2);;
         filterPublisher.setToolTipText("Filter by Publisher");
 
-        Model.JButton filterButton = new Model.JButton("Filter",22,new Color(233, 155, 155),scheme2);
+        Model.JButton filterButton = new Model.JButton("Filter",22,new Color(146, 171, 160),scheme2);
 
         filterPanel.add(new JLabel("Name:",22,scheme2));
         filterPanel.add(filterName);
@@ -101,17 +101,15 @@ public class ViewBook implements Operation {
 
                 for (int i = 0; i < books.size(); i++) {
                     Book b = books.get(i);
-//            if(b.getCount()>0){
                     booksData[i][0] = String.valueOf(b.getID());
                     booksData[i][1] = b.getName();
                     booksData[i][2] = b.getAuthor();
                     booksData[i][3] = b.getPublisher();
                     booksData[i][4] = String.valueOf(b.getCount());
-//            }
                 }
 
                 // Tạo JTable mới và cập nhật nội dung trong scrollPane
-                JTable table = new JTable(booksData, header,scheme2,scheme1);
+                JTable table = new JTable(booksData, header,scheme2,new Color(146, 171, 160));
                 scrollPane.setViewportView(table); // Cập nhật bảng trong scrollPane
                 scrollPane.revalidate(); // Làm mới giao diện
                 scrollPane.repaint(); // Vẽ lại giao diện

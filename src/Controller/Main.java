@@ -28,36 +28,71 @@ public class Main {
     }
     public static void start() {
         JFrame frame = new JFrame("Login");
-        frame.setSize(1000,600);
+        frame.setSize(750,800);
         frame.setLocationRelativeTo(null);
         frame.getContentPane().setBackground(Color.WHITE);
         frame.setLayout(new BorderLayout());
 
-        JLabel title = new JLabel("Welcome to Book Management System","Noto Serif Regular",40);
-        title.setBorder(BorderFactory.createEmptyBorder(50, 50, 50, 50));
+        JLabel title = new JLabel("PTIT's Online Library","Noto Serif Regular",40);
+        title.setBorder(BorderFactory.createEmptyBorder(50, 50, 20, 50));
         title.setForeground(new Color(101, 123, 119));
 
         frame.add(title, BorderLayout.NORTH);
 
-        JPanel panel = new JPanel(new GridLayout(3,2,15,15));
+        GridBagLayout layout = new GridBagLayout();
+
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.weightx = 1.0;
+        gbc.weighty = 1.0;
+        gbc.fill = GridBagConstraints.BOTH;
+
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.gridwidth = 2;
+
+
+        JPanel panel = new JPanel(layout);
         panel.setBackground(null);
-        panel.setBorder(BorderFactory.createEmptyBorder(50,50,50,50));
+        panel.setBorder(BorderFactory.createEmptyBorder(20,50,30,50));
 
         JLabel fieldLabel = new JLabel("Email address:", 28);
+        fieldLabel.setHorizontalAlignment(SwingConstants.LEFT);
         fieldLabel.setForeground(new Color(101, 123, 119));
-        panel.add(fieldLabel);
+        panel.add(fieldLabel,gbc);
+
+        gbc.gridx = 0;
+        gbc.gridy = 1;
 
         JTextField email = new JTextField(28);
+        email.setPreferredSize(new Dimension(200, 30));
         email.setForeground(new Color(101, 123, 119));
-        panel.add(email);
+        email.setHorizontalAlignment(SwingConstants.LEFT);
+        email.setBorder(BorderFactory.createCompoundBorder(
+                email.getBorder(), // Border gốc của JTextField
+                BorderFactory.createEmptyBorder(5, 15, 5, 15)
+        ));
+        panel.add(email,gbc);
+
+        gbc.gridx = 0;
+        gbc.gridy = 2;
 
         fieldLabel = new JLabel("Password:", 28);
+        fieldLabel.setHorizontalAlignment(SwingConstants.LEFT);
         fieldLabel.setForeground(new Color(101, 123, 119));
-        panel.add(fieldLabel);
+        panel.add(fieldLabel,gbc);
+
+        gbc.gridx = 0;
+        gbc.gridy = 3;
 
         JPasswordField password = new JPasswordField(28);
+        password.setPreferredSize(new Dimension(200, 30));
         password.setForeground(new Color(101, 123, 119));
-        panel.add(password);
+        password.setHorizontalAlignment(SwingConstants.LEFT);
+        password.setBorder(BorderFactory.createCompoundBorder(
+                password.getBorder(),
+                BorderFactory.createEmptyBorder(5, 15, 5, 15)
+        ));
+        panel.add(password,gbc);
 
         JButton createAcc = new JButton("Create New Account", 28, Color.WHITE, new Color(237, 237, 237));
         createAcc.setForeground(new Color(101, 123, 119));
@@ -138,7 +173,7 @@ public class Main {
                 for(User u : users) {
                     if(u.getEmail().equals(email.getText()) && u.getPassword().equals(password.getText())) {
                         loggedIn = true;
-                        u.showList(database,frame);
+                        u.showMenu(database,frame);
                         frame.dispose();
                     }
                 }
@@ -147,7 +182,14 @@ public class Main {
                 }
             }
         });
-        panel.add(login);
+        gbc.insets = new Insets(30, 0, 0, 0);
+        gbc.gridx = 0;
+        gbc.gridy = 4;
+        panel.add(login,gbc);
+
+        gbc.gridx = 0;
+        gbc.gridy = 5;
+        panel.add(createAcc,gbc);
 
         frame.add(panel, BorderLayout.CENTER);
         frame.setVisible(true);

@@ -7,6 +7,7 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.util.Scanner;
 import Model.JLabel;
 
@@ -35,19 +36,21 @@ public class Client extends User {
     }
 
     @Override
-    public void showList(Database database, JFrame f) {
+    public void showMenu(Database database, JFrame f) {
         JFrame frame = new JFrame("Client Panel");
         frame.setSize(1000, 1000);
         frame.setLocationRelativeTo(f);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
         // Thêm icon cho JFrame
-        Image icon = new ImageIcon("icon\\chillguy.png").getImage(); // Đường dẫn đến file icon
+        String imagePath = "icon" + File.separator + "chillguy.png";
+        Image icon = new ImageIcon(imagePath).getImage(); // Đường dẫn đến file icon
         frame.setIconImage(icon);
 
         // Tạo panel có ảnh nền
         JPanel backgroundPanel = new JPanel() {
-            private Image bgImage = new ImageIcon("image\\4907599.jpg").getImage(); // Đường dẫn ảnh
+            String imagePath = "image" + File.separator + "4907599.jpg";
+            private Image bgImage = new ImageIcon(imagePath).getImage(); // Đường dẫn ảnh
 
             @Override
             protected void paintComponent(Graphics g) {
@@ -61,7 +64,7 @@ public class Client extends User {
         backgroundPanel.setLayout(new BorderLayout());
 
         // Tiêu đề
-        JLabel title = new JLabel("Welcome User: " + getFirstName(), 22);
+        JLabel title = new JLabel("Hi, " + getFirstName() +" !", 22);
         title.setFont(new Font("Noto Serif Regular", Font.BOLD, 40));
         title.setForeground(new Color(101, 123, 119));
         title.setBorder(BorderFactory.createEmptyBorder(50, 50, 50, 50));
@@ -75,7 +78,6 @@ public class Client extends User {
         for (int i = 0; i < btns.length; i++) {
             final int j = i;
             JButton button = btns[i];
-            button.setFont(new Font("Arial", Font.PLAIN, 18));
             buttonPanel.add(button);
             button.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
