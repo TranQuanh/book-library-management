@@ -67,6 +67,8 @@ public class AddNewAdmin implements Operation {
         confirmPassword.setForeground(scheme2);
         panel.add(confirmPassword);
 
+        panel.add(new JLabel("",22,scheme2));
+
         JButton createAcc = new JButton("Create Account",22,new Color(146, 171, 160),scheme2);
         createAcc.addActionListener(new ActionListener() {
             @Override

@@ -17,8 +17,8 @@ import javax.swing.*;
 public class AddNewBook implements Operation {
     @Override
     public void operation(Database database, JFrame f, User user){
-        Color scheme1 = new Color(255, 208, 208);
-        Color scheme2 = new Color(168, 118, 118);
+        Color scheme1 = Color.WHITE;
+        Color scheme2 = new Color(101, 123, 119);
 
         JFrame frame = new JFrame("Add New Book");
         frame.setSize(700,650);
@@ -50,7 +50,7 @@ public class AddNewBook implements Operation {
         JTextField number = new JTextField(22);
         panel.add(number);
 
-        JButton cancel = new JButton("Cancel",22,new Color(233, 155, 155),scheme2);
+        JButton cancel = new JButton("Cancel",22,new Color(146, 171, 160),scheme2);
         cancel.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -60,7 +60,7 @@ public class AddNewBook implements Operation {
         });
         panel.add(cancel);
 
-        JButton save = new JButton("Save",22,new Color(233, 155, 155),scheme2);
+        JButton save = new JButton("Save",22,new Color(146, 171, 160),scheme2);
         save.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
